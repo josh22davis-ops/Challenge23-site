@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Challenge 23 — Science-Backed. Data-Driven. Socially Motivated.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --bg-warm: #f5f3ef;
+    --surface: #ffffff;
+    --text: #1a1a1f;
+    --text-mid: #4a4a52;
+    --text-light: #8a8a92;
+    --accent: #e04a1a;
+    --accent-warm: #c73e12;
+    --accent-soft: rgba(224,74,26,.08);
+    --accent-softer: rgba(224,74,26,.04);
+    --border: rgba(0,0,0,.06);
+    --border-accent: rgba(224,74,26,.15);
+    --font-head: 'Sora', sans-serif;
+    --font-body: 'Source Serif 4', Georgia, serif;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ═══════════ NAV ═══════════ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    background: rgba(250,250,248,.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -.3px;
+    color: var(--text);
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .logo span {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .nav-cta {
+    font-family: var(--font-head);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 8px 20px;
+    border: 1px solid var(--border-accent);
+    border-radius: 100px;
+    transition: all .3s;
+    cursor: pointer;
+  }
+
+  .nav-cta:hover {
+    background: var(--accent-soft);
+  }
+
+  /* ═══════════ HERO ═══════════ */
+  .hero {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 160px 24px 100px;
+    text-align: center;
+  }
+
+  .hero-label {
+    font-family: var(--font-head);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp .7s ease forwards .15s;
+  }
+
+  .hero h1 {
+    font-family: var(--font-head);
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -.5px;
+    color: var(--text);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp .7s ease forwards .3s;
+  }
+
+  .hero-intro {
+    font-size: clamp(17px, 1.8vw, 20px);
+    font-weight: 400;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: fadeUp .7s ease forwards .45s;
+  }
+
+  /* ─── Email form ─── */
+  .form-wrap {
+    opacity: 0;
+    animation: fadeUp .7s ease forwards .6s;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  .email-form {
+    display: flex;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    transition: border-color .3s, box-shadow .3s;
+  }
+
+  .email-form:focus-within {
+    border-color: var(--border-accent);
+    box-shadow: 0 0 0 3px var(--accent-soft), 0 1px 3px rgba(0,0,0,.04);
+  }
+
+  .email-form input {
+    flex: 1;
+    padding: 16px 20px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-head);
+    font-size: 14px;
+    color: var(--text);
+    min-width: 0;
+  }
+
+  .email-form input::placeholder { color: var(--text-light); }
+
+  .email-form button {
+    padding: 16px 28px;
+    background: var(--accent);
+    border: none;
+    color: #fff;
+    font-family: var(--font-head);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .3s;
+  }
+
+  .email-form button:hover { background: var(--accent-warm); }
+
+  .form-note {
+    font-family: var(--font-head);
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 12px;
+  }
+
+  .email-form.success { border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,.1); }
+  .email-form.success input,
+  .email-form.success button { display: none; }
+  .success-msg {
+    display: none; padding: 16px 20px; width: 100%;
+    text-align: center; color: #16a34a;
+    font-family: var(--font-head); font-size: 14px; font-weight: 500;
+  }
+  .email-form.success .success-msg { display: block; }
+
+  /* ═══════════ SECTIONS — shared ═══════════ */
+  .section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section-divider {
+    width: 48px;
+    height: 1px;
+    background: var(--border);
+    margin: 80px auto;
+  }
+
+  .section-label {
+    font-family: var(--font-head);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .section h2 {
+    font-family: var(--font-head);
+    font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -.3px;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .section p {
+    font-size: 17px;
+    color: var(--text-mid);
+    line-height: 1.8;
+  }
+
+  .section p + p {
+    margin-top: 16px;
+  }
+
+  /* ═══════════ 1. THE SCIENCE ═══════════ */
+  .science-callout {
+    margin-top: 36px;
+    padding: 32px;
+    background: var(--accent-softer);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+  }
+
+  .science-callout p {
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.75;
+  }
+
+  .science-callout strong {
+    color: var(--text);
+  }
+
+  /* ═══════════ 2. THE FORMAT ═══════════ */
+  .format-breakdown {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .format-block {
+    background: var(--surface);
+    padding: 28px 24px;
+    text-align: center;
+  }
+
+  .format-time {
+    font-family: var(--font-head);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .format-time .min {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .format-name {
+    font-family: var(--font-head);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-light);
+    margin-bottom: 10px;
+  }
+
+  .format-desc {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  /* ═══════════ 3. THE DATA ═══════════ */
+  .data-points {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .data-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .data-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .data-point h4 {
+    font-family: var(--font-head);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .data-point p {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  /* ═══════════ 4. THE SOCIAL LAYER ═══════════ */
+  .social-features {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .social-card {
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: border-color .3s;
+  }
+
+  .social-card:hover {
+    border-color: var(--border-accent);
+  }
+
+  .social-card h4 {
+    font-family: var(--font-head);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .social-card p {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  /* ═══════════ BOTTOM CTA ═══════════ */
+  .bottom-cta {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 80px 24px 100px;
+  }
+
+  .bottom-cta h2 {
+    font-family: var(--font-head);
+    font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 700;
+    letter-spacing: -.3px;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .bottom-cta > p {
+    font-size: 17px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+
+  /* ═══════════ FOOTER ═══════════ */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  footer p {
+    font-family: var(--font-head);
+    font-size: 12px;
+    color: var(--text-light);
+  }
+
+  /* ═══════════ ANIMATIONS ═══════════ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ═══════════ RESPONSIVE ═══════════ */
+  @media (max-width: 640px) {
+    nav { padding: 14px 20px; }
+    .format-breakdown { grid-template-columns: 1fr; }
+    .social-features { grid-template-columns: 1fr; }
+    .email-form { flex-direction: column; }
+    .email-form button { padding: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="logo">Challenge <span>23</span></div>
+  <a class="nav-cta" href="#signup">Join the Waitlist</a>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <p class="hero-label">Launching Soon on iOS</p>
+
+  <h1>A smarter way to measure fitness — in 23 minutes a week</h1>
+
+  <p class="hero-intro">
+    Challenge 23 is a structured, science-backed workout paired with real-time heart rate tracking. It shows you proof of improvement before you see it in the mirror — and gives you the social layer to stay in the game.
+  </p>
+
+  <div class="form-wrap" id="signup">
+    <form class="email-form" onsubmit="handleSubmit(event, this)">
+      <input type="email" placeholder="Your email address" required autocomplete="email" />
+      <button type="submit">Join the Waitlist</button>
+      <div class="success-msg">You're on the list. We'll be in touch.</div>
+    </form>
+    <p class="form-note">Early access for the first wave of users.</p>
+  </div>
+</section>
+
+<!-- ═══════════ 1. THE SCIENCE ═══════════ -->
+<div class="section-divider"></div>
+
+<section class="section reveal">
+  <p class="section-label">The Foundation</p>
+  <h2>Built on interval training that actually works</h2>
+
+  <p>
+    High-intensity interval training is one of the most studied and effective forms of cardiovascular exercise. Research consistently shows that short, structured bursts of effort followed by controlled recovery produce measurable gains in VO2 max, heart rate variability, and overall cardiovascular resilience — often in a fraction of the time required by traditional endurance training.
+  </p>
+  <p>
+    Challenge 23 takes this science and wraps it in a fixed, repeatable format. Every session follows the same structure, which means your results are always comparable — week over week, month over month.
+  </p>
+
+  <div class="science-callout">
+    <p>
+      This isn't a trend or a hack. Interval-based cardiovascular training has decades of evidence behind it. What's been missing is a way to <strong>standardize the workout</strong>, <strong>measure effort objectively</strong>, and give people a reason to <strong>keep showing up</strong>. That's what Challenge 23 is designed to do.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════ 2. THE FORMAT ═══════════ -->
+<div class="section-divider"></div>
+
+<section class="section reveal">
+  <p class="section-label">The Workout</p>
+  <h2>23 minutes. Same format. Every time.</h2>
+
+  <p>
+    The workout is intentionally simple and repeatable. It's not about variety — it's about having a controlled environment where your effort is the only variable. That's what makes the data meaningful.
+  </p>
+
+  <div class="format-breakdown">
+    <div class="format-block">
+      <div class="format-time">4<span class="min"> min</span></div>
+      <div class="format-name">Warmup</div>
+      <p class="format-desc">Gradual ramp to prepare your cardiovascular system</p>
+    </div>
+    <div class="format-block">
+      <div class="format-time">15<span class="min"> min</span></div>
+      <div class="format-name">Intervals</div>
+      <p class="format-desc">5 blocks of structured work, recovery, and hold phases</p>
+    </div>
+    <div class="format-block">
+      <div class="format-time">4<span class="min"> min</span></div>
+      <div class="format-name">Cooldown</div>
+      <p class="format-desc">Active recovery and heart rate return to baseline</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 3. THE DATA ═══════════ -->
+<div class="section-divider"></div>
+
+<section class="section reveal">
+  <p class="section-label">The Measurement</p>
+  <h2>Your heart rate tells the real story</h2>
+
+  <p>
+    Because every session uses the same structure, your heart rate data becomes a reliable record of your cardiovascular fitness over time. You'll see improvements in your data before you feel them — and long before you see them. That feedback loop is what makes the difference.
+  </p>
+
+  <div class="data-points">
+    <div class="data-point">
+      <div class="data-icon">📈</div>
+      <div>
+        <h4>Effort Scoring</h4>
+        <p>Each session produces an A–F grade based on how hard you worked relative to your capacity — not arbitrary calorie estimates.</p>
+      </div>
+    </div>
+    <div class="data-point">
+      <div class="data-icon">💓</div>
+      <div>
+        <h4>Recovery Tracking</h4>
+        <p>How quickly your heart rate drops after each interval is one of the strongest indicators of cardiovascular health. We track it every session.</p>
+      </div>
+    </div>
+    <div class="data-point">
+      <div class="data-icon">📊</div>
+      <div>
+        <h4>Progress Over Time</h4>
+        <p>A standardized workout means a standardized baseline. Week by week, your data builds a clear picture of where you started and how far you've come.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 4. THE SOCIAL LAYER ═══════════ -->
+<div class="section-divider"></div>
+
+<section class="section reveal">
+  <p class="section-label">What Keeps You In It</p>
+  <h2>The people around you</h2>
+
+  <p>
+    The science is sound. The data is real. But the reason people stick with it? Other people. Challenge 23 is built with a social layer designed around friendly accountability — a way to stay connected with friends while motivating each other to keep showing up.
+  </p>
+
+  <div class="social-features">
+    <div class="social-card">
+      <h4>👥 Buddy Challenges</h4>
+      <p>Challenge one friend or a group. Everyone sees everyone's effort metrics. It's friendly competition with real data behind it.</p>
+    </div>
+    <div class="social-card">
+      <h4>📬 Auto-Post Your Best</h4>
+      <p>Do the workout as many times as you want during the week. The app automatically shares your best session — no daily pressure, just your best effort.</p>
+    </div>
+    <div class="social-card">
+      <h4>🏆 Weekly Rankings</h4>
+      <p>See where you stand among your buddies. Light trash talk and call-outs are part of the culture. It's how friends push friends.</p>
+    </div>
+    <div class="social-card">
+      <h4>🤝 Low Bar, High Standard</h4>
+      <p>Once a week is all it takes to stay in the game. The bar is low enough that skipping feels embarrassing — but high enough that improvement is real.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BOTTOM CTA ═══════════ -->
+<div class="section-divider"></div>
+
+<section class="bottom-cta">
+  <h2>23 minutes a week. Real data. Real people.</h2>
+  <p>
+    Challenge 23 is coming to iOS. Join the waitlist to be part of the first group.
+  </p>
+
+  <div class="form-wrap reveal">
+    <form class="email-form" onsubmit="handleSubmit(event, this)">
+      <input type="email" placeholder="Your email address" required autocomplete="email" />
+      <button type="submit">Join the Waitlist</button>
+      <div class="success-msg">You're on the list. We'll be in touch.</div>
+    </form>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p>© 2026 Challenge 23</p>
+</footer>
+
+<script>
+  function handleSubmit(e, form) {
+    e.preventDefault();
+    form.classList.add('success');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
