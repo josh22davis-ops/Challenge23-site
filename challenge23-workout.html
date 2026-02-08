@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHALLENGE 23 — The 23-Minute HR-Signature Workout</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #000;
+    color: #fff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header { text-align: center; padding: 48px 24px 12px; }
+  .brand {
+    font-size: 13px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+    background: linear-gradient(135deg, #FF6A3D, #FF3D6A);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: 8px;
+  }
+  .header h1 { font-size: clamp(24px, 5vw, 40px); font-weight: 800; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 8px; }
+  .subtitle { color: #8E8E93; font-size: 14px; font-weight: 400; letter-spacing: 0.5px; }
+
+  /* ── LEGEND ── */
+  .legend { display: flex; justify-content: center; gap: 20px; padding: 20px 24px 28px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #8E8E93; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── TIMELINE ── */
+  .timeline-wrapper { padding: 0 24px 32px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .timeline-wrapper::-webkit-scrollbar { height: 6px; }
+  .timeline-wrapper::-webkit-scrollbar-track { background: transparent; }
+  .timeline-wrapper::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+  .timeline { display: flex; gap: 6px; min-width: max-content; padding-bottom: 8px; }
+
+  /* ── PHASE SECTION ── */
+  .phase-section { display: flex; flex-direction: column; gap: 4px; }
+  .phase-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    padding: 0 8px 6px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .time-range { font-weight: 500; color: #636366; font-size: 10px; letter-spacing: 0.5px; }
+  .phase-blocks { display: flex; gap: 4px; }
+
+  /* ── ROUND GROUPING ── */
+  .round-group { display: flex; flex-direction: column; gap: 4px; }
+  .round-label { font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #636366; text-align: center; padding-bottom: 2px; }
+  .round-blocks { display: flex; gap: 3px; }
+
+  /* ── EXERCISE BLOCK ── */
+  .block {
+    width: 120px; background: #1C1C1E; border-radius: 10px; padding: 14px 12px;
+    cursor: pointer; transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+    position: relative; overflow: hidden; display: flex; flex-direction: column;
+    justify-content: space-between; min-height: 130px; border: 1px solid transparent;
+  }
+  .block::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    border-radius: 10px 10px 0 0;
+  }
+  .block:hover { background: #2C2C2E; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.5); }
+  .block.wide { width: 150px; }
+
+  /* Color-coding */
+  .block.warmup::before { background: #F0A830; }
+  .block.warmup:hover { border-color: rgba(240,168,48,0.3); }
+  .block.work::before { background: #FF6B6B; }
+  .block.work:hover { border-color: rgba(255,107,107,0.3); }
+  .block.recover::before { background: #34C759; }
+  .block.recover:hover { border-color: rgba(52,199,89,0.3); }
+  .block.hold::before { background: #CC8800; }
+  .block.hold:hover { border-color: rgba(204,136,0,0.3); }
+  .block.cooldown::before { background: #5AC8FA; }
+  .block.cooldown:hover { border-color: rgba(90,200,250,0.3); }
+
+  .block-type { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .block.warmup .block-type { color: #F0A830; }
+  .block.work .block-type { color: #FF6B6B; }
+  .block.recover .block-type { color: #34C759; }
+  .block.hold .block-type { color: #CC8800; }
+  .block.cooldown .block-type { color: #5AC8FA; }
+
+  .block-exercise { font-size: 13px; font-weight: 600; line-height: 1.3; flex-grow: 1; display: flex; align-items: center; }
+  .block-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+  .block-time { font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .block-at { font-size: 10px; color: #636366; font-weight: 500; }
+
+  /* ── DETAIL OVERLAY ── */
+  .overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+    z-index: 100; justify-content: center; align-items: center; padding: 24px;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  }
+  .overlay.active { display: flex; }
+  .detail-card {
+    background: #1C1C1E; border-radius: 20px; padding: 32px; max-width: 420px;
+    width: 100%; position: relative; border: 1px solid #333;
+    animation: slideUp 0.25s ease;
+  }
+  @keyframes slideUp { from { opacity:0; transform:translateY(20px) scale(.97); } to { opacity:1; transform:translateY(0) scale(1); } }
+  .close-btn {
+    position: absolute; top: 16px; right: 16px; width: 32px; height: 32px;
+    border-radius: 50%; background: #333; border: none; color: #fff; font-size: 18px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .close-btn:hover { background: #444; }
+  .badge {
+    display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 6px; margin-bottom: 16px;
+  }
+  .badge.warmup { background: rgba(240,168,48,0.15); color: #F0A830; }
+  .badge.work { background: rgba(255,107,107,0.15); color: #FF6B6B; }
+  .badge.recover { background: rgba(52,199,89,0.15); color: #34C759; }
+  .badge.hold { background: rgba(204,136,0,0.15); color: #CC8800; }
+  .badge.cooldown { background: rgba(90,200,250,0.15); color: #5AC8FA; }
+  .d-name { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+  .d-time { font-size: 36px; font-weight: 800; font-variant-numeric: tabular-nums; margin: 16px 0; }
+  .d-time span { font-size: 16px; font-weight: 500; color: #8E8E93; margin-left: 4px; }
+  .d-meta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+  .d-meta-item { background: #2C2C2E; border-radius: 10px; padding: 10px 14px; flex: 1; min-width: 100px; }
+  .d-meta-label { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #636366; margin-bottom: 4px; }
+  .d-meta-value { font-size: 15px; font-weight: 700; }
+  .d-cue { color: #8E8E93; font-size: 13px; line-height: 1.6; border-top: 1px solid #333; padding-top: 16px; }
+  .d-cue strong { color: #fff; font-weight: 600; }
+
+  /* ── TOTAL BAR ── */
+  .bar-wrapper { padding: 8px 24px 48px; }
+  .bar-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+  .bar-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #8E8E93; }
+  .bar-total { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .bar { height: 8px; background: #1C1C1E; border-radius: 4px; display: flex; overflow: hidden; gap: 1px; }
+  .seg { height: 100%; border-radius: 2px; }
+  .seg.warmup { background: #F0A830; }
+  .seg.work { background: #FF6B6B; }
+  .seg.recover { background: #34C759; }
+  .seg.hold { background: #CC8800; }
+  .seg.cooldown { background: #5AC8FA; }
+
+  @media (max-width: 768px) {
+    .block { width: 105px; min-height: 115px; padding: 12px 10px; }
+    .block.wide { width: 130px; }
+    .block-time { font-size: 16px; }
+    .block-exercise { font-size: 12px; }
+    .detail-card { padding: 24px; }
+    .d-name { font-size: 20px; }
+    .d-time { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">Challenge 23</div>
+  <h1>The 23-Minute Workout</h1>
+  <div class="subtitle">HR-Signature Series &mdash; Tap any block for details</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#F0A830"></div>Warm-Up</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#FF6B6B"></div>Work</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#34C759"></div>Recover</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#CC8800"></div>Hold</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#5AC8FA"></div>Cooldown</div>
+</div>
+
+<div class="timeline-wrapper">
+  <div class="timeline">
+
+    <!-- ═══ WARM-UP ═══ -->
+    <div class="phase-section">
+      <div class="phase-label" style="color:#F0A830">Warm-Up <span class="time-range">0:00 – 4:00</span></div>
+      <div class="phase-blocks">
+        <div class="block warmup wide" onclick="showDetail('warmup','Warm-Up','Controlled Squats','2:00','0:00','2:00','','Slow, deliberate tempo. Focus on depth and breathing rhythm to elevate heart rate gradually.')">
+          <div class="block-type">Warm-Up</div>
+          <div class="block-exercise">Controlled Squats</div>
+          <div class="block-footer"><div class="block-time">2:00</div><div class="block-at">0:00</div></div>
+        </div>
+        <div class="block warmup wide" onclick="showDetail('warmup','Warm-Up','Forward Fold / Half Lift Flow','2:00','2:00','4:00','','Hinge at hips, lengthen spine on lift. Build posterior chain activation and breath control.')">
+          <div class="block-type">Warm-Up</div>
+          <div class="block-exercise">Forward Fold / Half Lift Flow</div>
+          <div class="block-footer"><div class="block-time">2:00</div><div class="block-at">2:00</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ INTERVAL ENGINE ═══ -->
+    <div class="phase-section">
+      <div class="phase-label" style="color:#FF6B6B">Interval Engine <span class="time-range">4:00 – 19:00</span></div>
+      <div class="phase-blocks">
+
+        <!-- ROUND 1 -->
+        <div class="round-group">
+          <div class="round-label">Round 1</div>
+          <div class="round-blocks">
+            <div class="block work" onclick="showDetail('work','Work','Pushups','1:00','4:00','5:00','1 of 5','Full range of motion. Chest to floor, full lockout. Maintain a rigid plank line throughout.')">
+              <div class="block-type">Work</div>
+              <div class="block-exercise">Pushups</div>
+              <div class="block-footer"><div class="block-time">1:00</div><div class="block-at">4:00</div></div>
+            </div>
+            <div class="block recover" onclick="showDetail('recover','Recover','Rest','1:00','5:00','6:00','1 of 5','Active recovery. Breathe deeply — in through nose, out through mouth. Let your heart rate come down.')">
+              <div class="block-type">Recover</div>
+              <div class="block-exercise">Rest</div>
+              <div class="block-footer"><div class="block-time">1:00</div><div class="block-at">5:00</div></div>
+            </div>
+            <div class="block hold" onclick="showDetail('hold','Hold','High Plank','1:00','6:00','7:00','1 of 5','Shoulders stacked over wrists. Engage core, squeeze glutes. Fight the sag — stay rigid.')">
+              <div class="block-type">Hold</div>
+              <div class="block-exercise">High Plank</div>
+              <div class="block-footer"><div class="block-time">1:00</div><div class="block-at">6:00</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROUND 2 -->
+        <div class="round-group">
+          <div class="round-label">Round 2</div>
+          <div class="round-blocks">
+            <div class="block work" onclick="showDetail('work','Work','Fast Tempo Squats','1:00','7:00','8:00','2 of 5','Explosive tempo, full depth. Drive through heels. This is your biggest muscle group — push the heart rate.')">
+              <div class="block-type">Work</div>
+              <div class="block-exercise">Fast Tempo Squats</div>
+              <div class="block-footer"><div class="block-time">1:00</div><div class="block-at">7:00</div></div>
+            </div>
+            <div class="block recover" onclick="showDetail('recover','Recover','Rest','1:00','8:00','9:00','2 of 5','Stand tall, hands on hips. Slow your breathing. Feel your heart rate drop before the hold.')">
+              <div class="block-type">Recover</div>
+              <div class="block-exercise">Rest</div>
+              <div class="block-footer"><div class="block-time">1:00</div><div class="block-at">8:00</div></div>
+            </div>
+            <div class="block hold" onclick="showDetail('hold','Hold','Wall Sit','1:00','9:00','10:00','2 of 5','Thighs parallel to floor. Back flat against the wall. Breathe through the burn — this builds mental strength.')">
+              <div class="block-type">Hold</div>
+              <div class="block-exercise">Wall Sit</div>
+              <div class="block-footer"><div class="block-time">1:00</div><div class="block-at">9:00</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROUND 3 -->
+        <div class="round-group">
+          <div class="round-label">Round 3</div>
+          <div class="round-blocks">
+            <div class="block work" onclick="showDetail('work','Work','Mountain Climbers','1:00','10:00','11:00','3 of 5','Drive knees to chest with speed. Keep hips low, core tight. Max effort — spike that heart rate.')">
+              <div class="block-type">Work</div>
+              <div class="block-exercise">Mountain Climbers</div>
+              <div class="block-footer"><div class="block-time">1:00</div><div class="block-at">10:00</div></div>
+            </div>
+            <div class="block recover" onclick="showDetail('recover','Recover','Rest','1:00','11:00','12:00','3 of 5','Shake out the arms. Walk it off if needed. Focus on slowing your breathing down steadily.')">
+              <div class="block-type">Recover</div>
+              <div class="block-exercise">Rest</div>
+              <div class="block-footer"><div class="block-time">1:00</div><div class="block-at">11:00</div></div>
+            </div>
+            <div class="block hold" onclick="showDetail('hold','Hold','Low Plank','1:00','12:00','13:00','3 of 5','Forearms down. Elbows under shoulders. Lock in your core — don&#39;t let your hips rise or drop.')">
+              <div class="block-type">Hold</div>
+              <div class="block-exercise">Low Plank</div>
+              <div class="block-footer"><div class="block-time">1:00</div><div class="block-at">12:00</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROUND 4 -->
+        <div class="round-group">
+          <div class="round-label">Round 4</div>
+          <div class="round-blocks">
+            <div class="block work" onclick="showDetail('work','Work','Alt. Reverse Lunges','1:00','13:00','14:00','4 of 5','Step back with control, drive up with power. Alternate legs each rep. Keep your torso upright.')">
+              <div class="block-type">Work</div>
+              <div class="block-exercise">Alt. Reverse Lunges</div>
+              <div class="block-footer"><div class="block-time">1:00</div><div class="block-at">13:00</div></div>
+            </div>
+            <div class="block recover" onclick="showDetail('recover','Recover','Rest','1:00','14:00','15:00','4 of 5','Stand in place, breathe. You&#39;re past the halfway mark. Use this minute to regroup mentally.')">
+              <div class="block-type">Recover</div>
+              <div class="block-exercise">Rest</div>
+              <div class="block-footer"><div class="block-time">1:00</div><div class="block-at">14:00</div></div>
+            </div>
+            <div class="block hold" onclick="showDetail('hold','Hold','Warrior II','1:00','15:00','16:00','4 of 5','Wide stance, front knee bent 90°. Arms extended, gaze over front hand. Sink deep and hold strong.')">
+              <div class="block-type">Hold</div>
+              <div class="block-exercise">Warrior II</div>
+              <div class="block-footer"><div class="block-time">1:00</div><div class="block-at">15:00</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROUND 5 -->
+        <div class="round-group">
+          <div class="round-label">Round 5</div>
+          <div class="round-blocks">
+            <div class="block work" onclick="showDetail('work','Work','Pushups','1:00','16:00','17:00','5 of 5','Last work block. Empty the tank. Full range — chest to floor, full extension. Make every rep count.')">
+              <div class="block-type">Work</div>
+              <div class="block-exercise">Pushups</div>
+              <div class="block-footer"><div class="block-time">1:00</div><div class="block-at">16:00</div></div>
+            </div>
+            <div class="block recover" onclick="showDetail('recover','Recover','Rest','1:00','17:00','18:00','5 of 5','Final recovery. Deep breaths. You&#39;ve earned this rest. One more hold and you&#39;re into cooldown.')">
+              <div class="block-type">Recover</div>
+              <div class="block-exercise">Rest</div>
+              <div class="block-footer"><div class="block-time">1:00</div><div class="block-at">17:00</div></div>
+            </div>
+            <div class="block hold" onclick="showDetail('hold','Hold','Deep Squat Hold','1:00','18:00','19:00','5 of 5','Drop into a deep squat, heels down. Elbows press knees out. Breathe and hold — last isometric effort.')">
+              <div class="block-type">Hold</div>
+              <div class="block-exercise">Deep Squat Hold</div>
+              <div class="block-footer"><div class="block-time">1:00</div><div class="block-at">18:00</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══ COOLDOWN ═══ -->
+    <div class="phase-section">
+      <div class="phase-label" style="color:#5AC8FA">Cooldown <span class="time-range">19:00 – 23:00</span></div>
+      <div class="phase-blocks">
+        <div class="block cooldown wide" onclick="showDetail('cooldown','Cooldown','Seated Forward Fold','2:00','19:00','21:00','','Legs extended. Fold forward from hips. Relax your neck. Slow, deep breathing to bring your heart rate down.')">
+          <div class="block-type">Cooldown</div>
+          <div class="block-exercise">Seated Forward Fold</div>
+          <div class="block-footer"><div class="block-time">2:00</div><div class="block-at">19:00</div></div>
+        </div>
+        <div class="block cooldown wide" onclick="showDetail('cooldown','Cooldown','Supine Rest','2:00','21:00','23:00','','Lie flat on your back. Close your eyes. Let gravity take over. This is where your body begins to recover.')">
+          <div class="block-type">Cooldown</div>
+          <div class="block-exercise">Supine Rest</div>
+          <div class="block-footer"><div class="block-time">2:00</div><div class="block-at">21:00</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOTAL DURATION BAR -->
+<div class="bar-wrapper">
+  <div class="bar-header">
+    <span class="bar-label">Total Duration</span>
+    <span class="bar-total">23:00</span>
+  </div>
+  <div class="bar">
+    <!-- Warmup: 2x 120s = 240s / 1380 total = 17.4% -->
+    <div class="seg warmup" style="width:8.7%" title="Controlled Squats (2:00)"></div>
+    <div class="seg warmup" style="width:8.7%" title="Forward Fold (2:00)"></div>
+    <!-- 5 rounds x 3 blocks = 15 blocks, each 60s = 4.35% -->
+    <div class="seg work" style="width:4.35%" title="Pushups (1:00)"></div>
+    <div class="seg recover" style="width:4.35%" title="Rest (1:00)"></div>
+    <div class="seg hold" style="width:4.35%" title="High Plank (1:00)"></div>
+    <div class="seg work" style="width:4.35%" title="Fast Tempo Squats (1:00)"></div>
+    <div class="seg recover" style="width:4.35%" title="Rest (1:00)"></div>
+    <div class="seg hold" style="width:4.35%" title="Wall Sit (1:00)"></div>
+    <div class="seg work" style="width:4.35%" title="Mountain Climbers (1:00)"></div>
+    <div class="seg recover" style="width:4.35%" title="Rest (1:00)"></div>
+    <div class="seg hold" style="width:4.35%" title="Low Plank (1:00)"></div>
+    <div class="seg work" style="width:4.35%" title="Alt. Reverse Lunges (1:00)"></div>
+    <div class="seg recover" style="width:4.35%" title="Rest (1:00)"></div>
+    <div class="seg hold" style="width:4.35%" title="Warrior II (1:00)"></div>
+    <div class="seg work" style="width:4.35%" title="Pushups (1:00)"></div>
+    <div class="seg recover" style="width:4.35%" title="Rest (1:00)"></div>
+    <div class="seg hold" style="width:4.35%" title="Deep Squat Hold (1:00)"></div>
+    <!-- Cooldown: 2x 120s -->
+    <div class="seg cooldown" style="width:8.7%" title="Seated Forward Fold (2:00)"></div>
+    <div class="seg cooldown" style="width:8.7%" title="Supine Rest (2:00)"></div>
+  </div>
+</div>
+
+<!-- DETAIL OVERLAY -->
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeDetail()">
+  <div class="detail-card">
+    <button class="close-btn" onclick="closeDetail()">&times;</button>
+    <div id="dc"></div>
+  </div>
+</div>
+
+<script>
+function showDetail(phase, type, name, dur, start, end, round, cue) {
+  var dc = document.getElementById('dc');
+  var roundHtml = round ? '<div class="d-meta-item"><div class="d-meta-label">Round</div><div class="d-meta-value">' + round + '</div></div>' : '';
+  dc.innerHTML = '<div class="badge ' + phase + '">' + type + '</div>' +
+    '<div class="d-name">' + name + '</div>' +
+    '<div class="d-time">' + dur + '<span>duration</span></div>' +
+    '<div class="d-meta">' +
+      '<div class="d-meta-item"><div class="d-meta-label">Starts</div><div class="d-meta-value">' + start + '</div></div>' +
+      '<div class="d-meta-item"><div class="d-meta-label">Ends</div><div class="d-meta-value">' + end + '</div></div>' +
+      roundHtml +
+    '</div>' +
+    '<div class="d-cue"><strong>Coaching Cue:</strong> ' + cue + '</div>';
+  document.getElementById('overlay').classList.add('active');
+}
+function closeDetail() {
+  document.getElementById('overlay').classList.remove('active');
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeDetail();
+});
+</script>
+</body>
+</html>
