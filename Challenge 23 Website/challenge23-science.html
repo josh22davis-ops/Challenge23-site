@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHALLENGE 23 — The Science Behind the 23-Minute Workout</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #000;
+    color: #fff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  .header { text-align: center; padding: 48px 24px 8px; max-width: 720px; margin: 0 auto; }
+  .brand {
+    font-size: 12px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+    background: linear-gradient(135deg, #FF6A3D, #FF3D6A);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: 10px;
+  }
+  .header h1 {
+    font-size: clamp(26px, 5vw, 42px); font-weight: 800; letter-spacing: -0.5px;
+    line-height: 1.15; margin-bottom: 12px;
+  }
+  .header h1 span { color: #8E8E93; font-weight: 400; }
+  .header .sub {
+    color: #8E8E93; font-size: 15px; line-height: 1.6; max-width: 520px; margin: 0 auto;
+  }
+
+  /* ── SHARED ── */
+  .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  .section { margin-bottom: 48px; }
+  .section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+    color: #636366; margin-bottom: 16px;
+  }
+  .card {
+    background: #1C1C1E; border-radius: 16px; padding: 24px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* ── 3-PHASE OVERVIEW ── */
+  .phases { display: flex; gap: 6px; margin-bottom: 32px; }
+  .phase-bar {
+    border-radius: 10px; padding: 18px 16px; display: flex; flex-direction: column;
+    justify-content: space-between; min-height: 100px; position: relative; overflow: hidden;
+  }
+  .phase-bar::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .phase-bar.warmup { flex: 0 0 17.4%; background: #1C1C1E; }
+  .phase-bar.warmup::before { background: #F0A830; }
+  .phase-bar.engine { flex: 1; background: #1C1C1E; }
+  .phase-bar.engine::before { background: linear-gradient(90deg, #FF6B6B, #34C759, #CC8800); }
+  .phase-bar.cooldown { flex: 0 0 17.4%; background: #1C1C1E; }
+  .phase-bar.cooldown::before { background: #5AC8FA; }
+  .phase-name { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+  .phase-bar.warmup .phase-name { color: #F0A830; }
+  .phase-bar.engine .phase-name { color: #fff; }
+  .phase-bar.cooldown .phase-name { color: #5AC8FA; }
+  .phase-time { font-size: 13px; color: #8E8E93; margin-top: 4px; }
+  .phase-dur { font-size: 22px; font-weight: 800; margin-top: auto; font-variant-numeric: tabular-nums; }
+
+  /* ── THE CYCLE (hero) ── */
+  .cycle-hero { text-align: center; padding: 40px 0 16px; }
+  .cycle-ring {
+    display: flex; align-items: center; justify-content: center; gap: 0;
+    margin: 0 auto 24px; max-width: 520px;
+  }
+  .cycle-block {
+    flex: 1; padding: 20px 12px; text-align: center; position: relative;
+    border-radius: 14px; margin: 0 3px; background: #1C1C1E;
+    border: 1px solid rgba(255,255,255,0.06); min-height: 140px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+  }
+  .cycle-block::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    border-radius: 14px 14px 0 0;
+  }
+  .cycle-block.work::before { background: #FF6B6B; }
+  .cycle-block.recover::before { background: #34C759; }
+  .cycle-block.hold::before { background: #CC8800; }
+
+  .cycle-icon { font-size: 28px; margin-bottom: 8px; }
+  .cycle-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .cycle-block.work .cycle-label { color: #FF6B6B; }
+  .cycle-block.recover .cycle-label { color: #34C759; }
+  .cycle-block.hold .cycle-label { color: #CC8800; }
+  .cycle-dur { font-size: 24px; font-weight: 800; margin-bottom: 4px; font-variant-numeric: tabular-nums; }
+  .cycle-desc { font-size: 11px; color: #8E8E93; line-height: 1.4; max-width: 120px; }
+
+  .cycle-arrow { font-size: 18px; color: #636366; flex-shrink: 0; }
+
+  .cycle-multiplier {
+    font-size: 48px; font-weight: 900; letter-spacing: -2px;
+    background: linear-gradient(135deg, #FF6B6B, #CC8800);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: 4px;
+  }
+  .cycle-sub { color: #8E8E93; font-size: 14px; }
+
+  /* ── SCIENCE CARDS ── */
+  .science-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .sci-card {
+    background: #1C1C1E; border-radius: 14px; padding: 22px 20px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.25s ease; cursor: default;
+  }
+  .sci-card:hover { background: #2C2C2E; transform: translateY(-2px); }
+  .sci-card.full { grid-column: 1 / -1; }
+  .sci-tag {
+    font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 5px; display: inline-block; margin-bottom: 12px;
+  }
+  .sci-tag.work { background: rgba(255,107,107,0.12); color: #FF6B6B; }
+  .sci-tag.recover { background: rgba(52,199,89,0.12); color: #34C759; }
+  .sci-tag.hold { background: rgba(204,136,0,0.12); color: #CC8800; }
+  .sci-tag.combo { background: rgba(255,106,61,0.12); color: #FF6A3D; }
+  .sci-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+  .sci-body { font-size: 13px; color: #8E8E93; line-height: 1.65; }
+  .sci-body strong { color: #fff; font-weight: 600; }
+  .sci-stat {
+    display: flex; align-items: baseline; gap: 6px; margin-top: 14px;
+    padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .sci-stat-num { font-size: 28px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .sci-stat.work .sci-stat-num { color: #FF6B6B; }
+  .sci-stat.recover .sci-stat-num { color: #34C759; }
+  .sci-stat.hold .sci-stat-num { color: #CC8800; }
+  .sci-stat.combo .sci-stat-num {
+    background: linear-gradient(135deg, #FF6A3D, #FF3D6A);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .sci-stat-label { font-size: 12px; color: #636366; }
+
+  /* ── WHAT MAKES IT DIFFERENT ── */
+  .diff-row {
+    display: flex; align-items: center; gap: 16px; padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .diff-row:last-child { border-bottom: none; }
+  .diff-icon {
+    width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .diff-icon.a { background: rgba(255,107,107,0.12); }
+  .diff-icon.b { background: rgba(52,199,89,0.12); }
+  .diff-icon.c { background: rgba(204,136,0,0.12); }
+  .diff-icon.d { background: rgba(90,200,250,0.12); }
+  .diff-text { flex: 1; }
+  .diff-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+  .diff-desc { font-size: 12px; color: #8E8E93; line-height: 1.5; }
+
+  /* ── TOTAL BAR ── */
+  .bar-wrapper { padding: 32px 0 0; }
+  .bar-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+  .bar-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #8E8E93; }
+  .bar-total { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .bar { height: 8px; background: #111; border-radius: 4px; display: flex; overflow: hidden; gap: 1px; }
+  .seg { height: 100%; border-radius: 2px; }
+  .seg.warmup { background: #F0A830; }
+  .seg.work { background: #FF6B6B; }
+  .seg.recover { background: #34C759; }
+  .seg.hold { background: #CC8800; }
+  .seg.cooldown { background: #5AC8FA; }
+
+  /* ── WHO IT'S FOR ── */
+  .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .aud-card {
+    background: #1C1C1E; border-radius: 14px; padding: 20px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .aud-card .aud-icon { font-size: 24px; margin-bottom: 10px; }
+  .aud-card .aud-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .aud-card .aud-desc { font-size: 12px; color: #8E8E93; line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center; padding: 40px 24px 48px; color: #636366; font-size: 12px;
+  }
+  .footer .brand-sm {
+    font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    background: linear-gradient(135deg, #FF6A3D, #FF3D6A);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .phases { flex-direction: column; }
+    .phase-bar { min-height: 70px; flex: none !important; }
+    .cycle-ring { flex-direction: column; max-width: 280px; }
+    .cycle-arrow { transform: rotate(90deg); }
+    .cycle-block { min-height: 100px; margin: 3px 0; }
+    .science-grid { grid-template-columns: 1fr; }
+    .audience-grid { grid-template-columns: 1fr; }
+    .cycle-multiplier { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<div class="header">
+  <div class="brand">Challenge 23</div>
+  <h1>The Science Behind<br><span>the 23-Minute Workout</span></h1>
+  <p class="sub">Not a random HIIT session. A structured, research-backed protocol that combines dynamic effort, enforced recovery, and isometric stress into one repeatable test.</p>
+</div>
+
+<div class="container">
+
+  <!-- ═══ 3-PHASE OVERVIEW ═══ -->
+  <div class="section" style="margin-top:36px">
+    <div class="section-label">The Structure</div>
+    <div class="phases">
+      <div class="phase-bar warmup">
+        <div><div class="phase-name">Warm-Up</div><div class="phase-time">0:00 – 4:00</div></div>
+        <div class="phase-dur">4:00</div>
+      </div>
+      <div class="phase-bar engine">
+        <div><div class="phase-name">Interval Engine &times;5</div><div class="phase-time">4:00 – 19:00</div></div>
+        <div class="phase-dur">15:00</div>
+      </div>
+      <div class="phase-bar cooldown">
+        <div><div class="phase-name">Cooldown</div><div class="phase-time">19:00 – 23:00</div></div>
+        <div class="phase-dur">4:00</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ THE CYCLE ═══ -->
+  <div class="section">
+    <div class="section-label">The 3-Minute Cycle</div>
+    <div class="cycle-hero">
+      <div class="cycle-ring">
+        <div class="cycle-block work">
+          <div class="cycle-icon">&#9889;</div>
+          <div class="cycle-label">Work</div>
+          <div class="cycle-dur">1:00</div>
+          <div class="cycle-desc">Dynamic, full-body effort. Spike your heart rate.</div>
+        </div>
+        <div class="cycle-arrow">&#8594;</div>
+        <div class="cycle-block recover">
+          <div class="cycle-icon">&#9825;</div>
+          <div class="cycle-label">Recover</div>
+          <div class="cycle-dur">1:00</div>
+          <div class="cycle-desc">Enforced rest. This is measurement time, not wasted time.</div>
+        </div>
+        <div class="cycle-arrow">&#8594;</div>
+        <div class="cycle-block hold">
+          <div class="cycle-icon">&#9878;</div>
+          <div class="cycle-label">Hold</div>
+          <div class="cycle-dur">1:00</div>
+          <div class="cycle-desc">Isometric stress. Elevate cardiac load without movement.</div>
+        </div>
+      </div>
+      <div class="cycle-multiplier">&times;5</div>
+      <div class="cycle-sub">Five rounds. Fifteen minutes. One signature.</div>
+    </div>
+  </div>
+
+  <!-- ═══ WHY EACH COMPONENT MATTERS ═══ -->
+  <div class="section">
+    <div class="section-label">Why Each Minute Matters</div>
+    <div class="science-grid">
+
+      <div class="sci-card">
+        <div class="sci-tag work">Work</div>
+        <div class="sci-title">Metabolic + Cardiovascular Load</div>
+        <div class="sci-body">60-second high-effort intervals reliably push HR to <strong>85–95% HRmax</strong> in non-elite populations. Short intervals excel at cardiac output stress without requiring pacing skill.</div>
+        <div class="sci-stat work">
+          <div class="sci-stat-num">5</div>
+          <div class="sci-stat-label">HR accelerations per session</div>
+        </div>
+      </div>
+
+      <div class="sci-card">
+        <div class="sci-tag recover">Recover</div>
+        <div class="sci-title">Autonomic Down-Regulation</div>
+        <div class="sci-body">Heart rate recovery in the first 60 seconds post-effort is a <strong>strong predictor of cardiovascular health</strong> and mortality risk. Enforced rest creates comparable, measurable HRR curves.</div>
+        <div class="sci-stat recover">
+          <div class="sci-stat-num">5</div>
+          <div class="sci-stat-label">clean recovery signals captured</div>
+        </div>
+      </div>
+
+      <div class="sci-card">
+        <div class="sci-tag hold">Hold</div>
+        <div class="sci-title">The Differentiator</div>
+        <div class="sci-body">Isometric training shows <strong>equal or superior reductions in resting blood pressure</strong> compared to aerobic or resistance training. Static holds elevate peripheral vascular resistance, increasing cardiac afterload without movement.</div>
+        <div class="sci-stat hold">
+          <div class="sci-stat-num">5</div>
+          <div class="sci-stat-label">isometric pressure loads applied</div>
+        </div>
+      </div>
+
+      <div class="sci-card">
+        <div class="sci-tag combo">Combined</div>
+        <div class="sci-title">Sympathetic–Parasympathetic Switching</div>
+        <div class="sci-body">Five complete cycles of acceleration, recovery, and pressure create <strong>repeated autonomic nervous system switching</strong> — a training stimulus rarely seen in standard HIIT protocols.</div>
+        <div class="sci-stat combo">
+          <div class="sci-stat-num">15</div>
+          <div class="sci-stat-label">distinct physiological stressors in one session</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ WHAT MAKES IT DIFFERENT ═══ -->
+  <div class="section">
+    <div class="section-label">What Makes This Different</div>
+    <div class="card">
+      <div class="diff-row">
+        <div class="diff-icon a">&#9889;</div>
+        <div class="diff-text">
+          <div class="diff-title">Three stressors, not two</div>
+          <div class="diff-desc">Most HIIT uses work + rest. This protocol adds a third — isometric pressure loading — creating a physiological response you can't get from standard intervals.</div>
+        </div>
+      </div>
+      <div class="diff-row">
+        <div class="diff-icon b">&#9825;</div>
+        <div class="diff-text">
+          <div class="diff-title">Recovery is measurement, not downtime</div>
+          <div class="diff-desc">Mandatory, unskippable rest creates clean, comparable HRR signals across every session. This eliminates ego-driven pacing and improves data quality.</div>
+        </div>
+      </div>
+      <div class="diff-row">
+        <div class="diff-icon c">&#9878;</div>
+        <div class="diff-text">
+          <div class="diff-title">Block 1 vs Block 5 reveals true fitness</div>
+          <div class="diff-desc">By repeating the same structure five times, your first-round performance against your fifth reveals neuromuscular fatigue vs cardiovascular capacity — no extra sensors needed.</div>
+        </div>
+      </div>
+      <div class="diff-row">
+        <div class="diff-icon d">&#9733;</div>
+        <div class="diff-text">
+          <div class="diff-title">Repeatable enough to rank, stressful enough to matter</div>
+          <div class="diff-desc">Simple enough to repeat weekly. Hard enough to produce meaningful data. Scalable enough to include anyone who can squat, push, and plank pain-free.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BUILT FOR ═══ -->
+  <div class="section">
+    <div class="section-label">Built For</div>
+    <div class="audience-grid">
+      <div class="aud-card">
+        <div class="aud-icon">&#127947;</div>
+        <div class="aud-title">The Returning Exerciser</div>
+        <div class="aud-desc">Recreationally active, wants a consistent benchmark. Scalable movements, no equipment required.</div>
+      </div>
+      <div class="aud-card">
+        <div class="aud-icon">&#128200;</div>
+        <div class="aud-title">The Data-Driven</div>
+        <div class="aud-desc">Your HR signature is your fingerprint. Track your Training Quality score week over week with real, comparable data.</div>
+      </div>
+      <div class="aud-card">
+        <div class="aud-icon">&#9201;</div>
+        <div class="aud-title">The Time-Pressed</div>
+        <div class="aud-desc">23 minutes. No gym. No gear. No excuses. Structured effort that fits in a lunch break.</div>
+      </div>
+      <div class="aud-card">
+        <div class="aud-icon">&#128101;</div>
+        <div class="aud-title">The Community</div>
+        <div class="aud-desc">Same test, same rules, same time limit. Everyone gets ranked on the same playing field — effort is the equalizer.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TOTAL TIME BAR ═══ -->
+  <div class="section">
+    <div class="bar-wrapper">
+      <div class="bar-header">
+        <span class="bar-label">23 Minutes, Mapped</span>
+        <span class="bar-total">23:00</span>
+      </div>
+      <div class="bar">
+        <div class="seg warmup" style="width:8.7%" title="Warm-Up (2:00)"></div>
+        <div class="seg warmup" style="width:8.7%" title="Warm-Up (2:00)"></div>
+        <div class="seg work" style="width:4.35%" title="Work (1:00)"></div>
+        <div class="seg recover" style="width:4.35%" title="Recover (1:00)"></div>
+        <div class="seg hold" style="width:4.35%" title="Hold (1:00)"></div>
+        <div class="seg work" style="width:4.35%" title="Work (1:00)"></div>
+        <div class="seg recover" style="width:4.35%" title="Recover (1:00)"></div>
+        <div class="seg hold" style="width:4.35%" title="Hold (1:00)"></div>
+        <div class="seg work" style="width:4.35%" title="Work (1:00)"></div>
+        <div class="seg recover" style="width:4.35%" title="Recover (1:00)"></div>
+        <div class="seg hold" style="width:4.35%" title="Hold (1:00)"></div>
+        <div class="seg work" style="width:4.35%" title="Work (1:00)"></div>
+        <div class="seg recover" style="width:4.35%" title="Recover (1:00)"></div>
+        <div class="seg hold" style="width:4.35%" title="Hold (1:00)"></div>
+        <div class="seg work" style="width:4.35%" title="Work (1:00)"></div>
+        <div class="seg recover" style="width:4.35%" title="Recover (1:00)"></div>
+        <div class="seg hold" style="width:4.35%" title="Hold (1:00)"></div>
+        <div class="seg cooldown" style="width:8.7%" title="Cooldown (2:00)"></div>
+        <div class="seg cooldown" style="width:8.7%" title="Cooldown (2:00)"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<div class="footer">
+  <div class="brand-sm">Challenge 23</div>
+  <div>A weekly effort truth machine. Simple enough to repeat. Stressful enough to matter. Measurable enough to rank.</div>
+</div>
+
+</body>
+</html>
