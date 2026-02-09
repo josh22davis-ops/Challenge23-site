@@ -305,6 +305,42 @@
     line-height: 1.5;
   }
 
+  /* ─── Workout links ─── */
+  .workout-links {
+    margin-top: 28px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .workout-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-head);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 12px 24px;
+    border: 1px solid var(--border-accent);
+    border-radius: 10px;
+    transition: all .3s;
+  }
+
+  .workout-link:hover {
+    background: var(--accent-soft);
+    box-shadow: 0 2px 8px rgba(224,74,26,.1);
+  }
+
+  .workout-link .arrow {
+    transition: transform .3s;
+  }
+
+  .workout-link:hover .arrow {
+    transform: translateX(3px);
+  }
+
   /* ═══════════ 3. THE DATA ═══════════ */
   .data-points {
     margin-top: 36px;
@@ -526,6 +562,11 @@
       <div class="format-name">Cooldown</div>
       <p class="format-desc">Active recovery and heart rate return to baseline</p>
     </div>
+  </div>
+
+  <div class="workout-links">
+    <a class="workout-link" href="challenge23-workout.html">See every exercise <span class="arrow">&rarr;</span></a>
+    <a class="workout-link" href="challenge23-science.html">The science behind it <span class="arrow">&rarr;</span></a>
   </div>
 </section>
 
