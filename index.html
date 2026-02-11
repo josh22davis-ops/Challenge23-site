@@ -187,12 +187,20 @@
   .email-form.success { border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,.1); }
   .email-form.success input,
   .email-form.success button { display: none; }
-  .success-msg {
+  .email-form.error { border-color: #dc2626; box-shadow: 0 0 0 3px rgba(220,38,38,.1); }
+  .success-msg, .error-msg {
     display: none; padding: 16px 20px; width: 100%;
-    text-align: center; color: #16a34a;
+    text-align: center;
     font-family: var(--font-head); font-size: 14px; font-weight: 500;
   }
+  .success-msg { color: #16a34a; }
+  .error-msg { color: #dc2626; }
   .email-form.success .success-msg { display: block; }
+  .email-form.error .error-msg { display: block; }
+  .email-form button:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+  }
 
   /* ═══════════ SECTIONS — shared ═══════════ */
   .section {
@@ -503,6 +511,7 @@
       <input type="email" placeholder="Your email address" required autocomplete="email" />
       <button type="submit">Join the Waitlist</button>
       <div class="success-msg">You're on the list. We'll be in touch.</div>
+      <div class="error-msg">Something went wrong. Please try again.</div>
     </form>
     <p class="form-note">Early access for the first wave of users.</p>
   </div>
@@ -642,6 +651,7 @@
       <input type="email" placeholder="Your email address" required autocomplete="email" />
       <button type="submit">Join the Waitlist</button>
       <div class="success-msg">You're on the list. We'll be in touch.</div>
+      <div class="error-msg">Something went wrong. Please try again.</div>
     </form>
   </div>
 </section>
@@ -652,9 +662,40 @@
 </footer>
 
 <script>
-  function handleSubmit(e, form) {
+  // ── PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL BELOW ──
+  const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyRLNWDLtjCwIUudarNPFmSYh_Kzw9gwt9wAjl9KqIYnynJUifZBiDx_SIISWBfKjw/exec';
+
+  async function handleSubmit(e, form) {
     e.preventDefault();
-    form.classList.add('success');
+
+    const input = form.querySelector('input[type="email"]');
+    const button = form.querySelector('button');
+    const email = input.value.trim();
+
+    if (!email) return;
+
+    // Disable button while submitting
+    button.disabled = true;
+    button.textContent = 'Submitting…';
+
+    // Reset any previous error state
+    form.classList.remove('error');
+
+    try {
+      const response = await fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, timestamp: new Date().toISOString() })
+      });
+
+      // Google Apps Script with no-cors returns opaque response, so we treat it as success
+      form.classList.add('success');
+    } catch (err) {
+      form.classList.add('error');
+      button.disabled = false;
+      button.textContent = 'Join the Waitlist';
+    }
   }
 
   const observer = new IntersectionObserver((entries) => {
