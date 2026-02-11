@@ -507,8 +507,9 @@
   </p>
 
   <div class="form-wrap" id="signup">
-    <form class="email-form" onsubmit="handleSubmit(event, this)">
-      <input type="email" placeholder="Your email address" required autocomplete="email" />
+    <form class="email-form" action="https://script.google.com/macros/s/AKfycbyRLNWDLtjCwIUudarNPFmSYh_Kzw9gwt9wAjl9KqIYnynJUifZBiDx_SIISWBfKjw/exec" method="POST" target="hidden_iframe" onsubmit="handleSubmit(this)">
+      <input type="email" name="email" placeholder="Your email address" required autocomplete="email" />
+      <input type="hidden" name="timestamp" />
       <button type="submit">Join the Waitlist</button>
       <div class="success-msg">You're on the list. We'll be in touch.</div>
       <div class="error-msg">Something went wrong. Please try again.</div>
@@ -647,8 +648,9 @@
   </p>
 
   <div class="form-wrap reveal">
-    <form class="email-form" onsubmit="handleSubmit(event, this)">
-      <input type="email" placeholder="Your email address" required autocomplete="email" />
+    <form class="email-form" action="https://script.google.com/macros/s/AKfycbyRLNWDLtjCwIUudarNPFmSYh_Kzw9gwt9wAjl9KqIYnynJUifZBiDx_SIISWBfKjw/exec" method="POST" target="hidden_iframe" onsubmit="handleSubmit(this)">
+      <input type="email" name="email" placeholder="Your email address" required autocomplete="email" />
+      <input type="hidden" name="timestamp" />
       <button type="submit">Join the Waitlist</button>
       <div class="success-msg">You're on the list. We'll be in touch.</div>
       <div class="error-msg">Something went wrong. Please try again.</div>
@@ -656,46 +658,23 @@
   </div>
 </section>
 
+<!-- Hidden iframe for form submission -->
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
 <!-- ─── FOOTER ─── -->
 <footer>
   <p>© 2026 Challenge 23 · <a href="privacy.html" style="color: var(--text-light); text-decoration: none;">Privacy Policy</a></p>
 </footer>
 
 <script>
-  // ── PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL BELOW ──
-  const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyRLNWDLtjCwIUudarNPFmSYh_Kzw9gwt9wAjl9KqIYnynJUifZBiDx_SIISWBfKjw/exec';
+  function handleSubmit(form) {
+    // Set the timestamp before the form submits
+    form.querySelector('input[name="timestamp"]').value = new Date().toISOString();
 
-  async function handleSubmit(e, form) {
-    e.preventDefault();
-
-    const input = form.querySelector('input[type="email"]');
-    const button = form.querySelector('button');
-    const email = input.value.trim();
-
-    if (!email) return;
-
-    // Disable button while submitting
-    button.disabled = true;
-    button.textContent = 'Submitting…';
-
-    // Reset any previous error state
-    form.classList.remove('error');
-
-    try {
-      const response = await fetch(GOOGLE_SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, timestamp: new Date().toISOString() })
-      });
-
-      // Google Apps Script with no-cors returns opaque response, so we treat it as success
+    // Show success state after a short delay (form submits to hidden iframe)
+    setTimeout(function() {
       form.classList.add('success');
-    } catch (err) {
-      form.classList.add('error');
-      button.disabled = false;
-      button.textContent = 'Join the Waitlist';
-    }
+    }, 1000);
   }
 
   const observer = new IntersectionObserver((entries) => {
