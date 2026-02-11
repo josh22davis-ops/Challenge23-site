@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Challenge 23</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1f;
+    --text-mid: #4a4a52;
+    --text-light: #8a8a92;
+    --accent: #e04a1a;
+    --accent-warm: #c73e12;
+    --border: rgba(0,0,0,.06);
+    --border-accent: rgba(224,74,26,.15);
+    --font-head: 'Sora', sans-serif;
+    --font-body: 'Source Serif 4', Georgia, serif;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ═══════════ NAV ═══════════ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    background: rgba(250,250,248,.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -.3px;
+    color: var(--text);
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    text-decoration: none;
+  }
+
+  .logo span {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .nav-cta {
+    font-family: var(--font-head);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 8px 20px;
+    border: 1px solid var(--border-accent);
+    border-radius: 100px;
+    transition: all .3s;
+  }
+
+  .nav-cta:hover {
+    background: rgba(224,74,26,.08);
+  }
+
+  /* ═══════════ CONTENT ═══════════ */
+  .content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 140px 24px 80px;
+  }
+
+  .page-label {
+    font-family: var(--font-head);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: var(--font-head);
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -.3px;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .last-updated {
+    font-family: var(--font-head);
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 48px;
+  }
+
+  h2 {
+    font-family: var(--font-head);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 40px;
+    margin-bottom: 16px;
+  }
+
+  h3 {
+    font-family: var(--font-head);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 28px;
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  ul {
+    margin: 0 0 16px 24px;
+    color: var(--text-mid);
+  }
+
+  li {
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 8px;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* ═══════════ FOOTER ═══════════ */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  footer p {
+    font-family: var(--font-head);
+    font-size: 12px;
+    color: var(--text-light);
+  }
+
+  footer a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin: 0 12px;
+  }
+
+  footer a:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 14px 20px; }
+    .content { padding: 120px 20px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Challenge <span>23</span></a>
+  <a class="nav-cta" href="index.html#signup">Join the Waitlist</a>
+</nav>
+
+<div class="content">
+  <p class="page-label">Legal</p>
+  <h1>Privacy Policy</h1>
+  <p class="last-updated">Last updated: February 10, 2026</p>
+
+  <h2>Overview</h2>
+  <p>Challenge 23 ("we", "our", or "the app") is committed to protecting your privacy. This policy explains how we collect, use, and safeguard your information.</p>
+
+  <h2>Information We Collect</h2>
+
+  <h3>Account Information</h3>
+  <p>When you sign in with Apple, we may receive:</p>
+  <ul>
+    <li>Your name (if you choose to share it)</li>
+    <li>Your email address (or Apple's private relay email)</li>
+    <li>A unique user identifier</li>
+  </ul>
+
+  <h3>Health Data</h3>
+  <p>With your permission, we access:</p>
+  <ul>
+    <li>Heart rate data during workouts</li>
+    <li>Resting heart rate measurements</li>
+    <li>Workout session data</li>
+  </ul>
+  <p>Health data is stored locally on your device and optionally synced to your private account via secure cloud storage.</p>
+
+  <h3>Bluetooth Data</h3>
+  <p>We connect to Bluetooth heart rate monitors to receive real-time heart rate data during workouts. We do not collect or store information about your Bluetooth devices.</p>
+
+  <h2>How We Use Your Information</h2>
+  <ul>
+    <li>To provide workout tracking and heart rate monitoring features</li>
+    <li>To calculate training quality scores and recovery metrics</li>
+    <li>To sync your data across your devices</li>
+    <li>To enable group challenges with friends (if you choose to join)</li>
+  </ul>
+
+  <h2>Data Storage & Security</h2>
+  <p>Your data is stored using Firebase (Google Cloud), which employs industry-standard encryption and security practices. Health data is encrypted both in transit and at rest.</p>
+
+  <h2>Data Sharing</h2>
+  <p>We do not sell your personal information. We only share data:</p>
+  <ul>
+    <li>With group members if you join a challenge group (only workout summaries you choose to share)</li>
+    <li>With service providers (Firebase/Google) who help operate our app</li>
+    <li>If required by law</li>
+  </ul>
+
+  <h2>Your Rights</h2>
+  <p>You can:</p>
+  <ul>
+    <li>Delete your account and all associated data at any time</li>
+    <li>Revoke HealthKit permissions in iOS Settings</li>
+    <li>Request a copy of your data</li>
+  </ul>
+
+  <h2>Children's Privacy</h2>
+  <p>Challenge 23 is not intended for children under 13. We do not knowingly collect information from children under 13.</p>
+
+  <h2>Changes to This Policy</h2>
+  <p>We may update this policy from time to time. We will notify you of significant changes through the app.</p>
+
+  <h2>Contact Us</h2>
+  <p>If you have questions about this privacy policy, contact us at:<br>
+  Email: <a href="mailto:privacy@challenge23app.com">privacy@challenge23app.com</a></p>
+</div>
+
+<footer>
+  <p>© 2026 Challenge 23 · <a href="privacy.html">Privacy Policy</a></p>
+</footer>
+
+</body>
+</html>

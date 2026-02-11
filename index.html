@@ -305,42 +305,6 @@
     line-height: 1.5;
   }
 
-  /* ─── Workout links ─── */
-  .workout-links {
-    margin-top: 28px;
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .workout-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-head);
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--accent);
-    text-decoration: none;
-    padding: 12px 24px;
-    border: 1px solid var(--border-accent);
-    border-radius: 10px;
-    transition: all .3s;
-  }
-
-  .workout-link:hover {
-    background: var(--accent-soft);
-    box-shadow: 0 2px 8px rgba(224,74,26,.1);
-  }
-
-  .workout-link .arrow {
-    transition: transform .3s;
-  }
-
-  .workout-link:hover .arrow {
-    transform: translateX(3px);
-  }
-
   /* ═══════════ 3. THE DATA ═══════════ */
   .data-points {
     margin-top: 36px;
@@ -459,6 +423,36 @@
     color: var(--text-light);
   }
 
+  /* ═══════════ CLICKABLE SECTION LINK ═══════════ */
+  .section-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .clickable-section {
+    transition: all .3s ease;
+    padding: 32px;
+    margin: -32px;
+    border-radius: 16px;
+  }
+
+  .section-link:hover .clickable-section {
+    background: var(--accent-softer);
+  }
+
+  .learn-more {
+    font-size: 16px;
+    color: var(--accent);
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity .3s ease;
+  }
+
+  .section-link:hover .learn-more {
+    opacity: 1;
+  }
+
   /* ═══════════ ANIMATIONS ═══════════ */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
@@ -538,9 +532,10 @@
 <!-- ═══════════ 2. THE FORMAT ═══════════ -->
 <div class="section-divider"></div>
 
-<section class="section reveal">
+<a href="workout.html" class="section-link">
+<section class="section reveal clickable-section">
   <p class="section-label">The Workout</p>
-  <h2>23 minutes. Same format. Every time.</h2>
+  <h2>23 minutes. Same format. Every time. <span class="learn-more">Learn more →</span></h2>
 
   <p>
     The workout is intentionally simple and repeatable. It's not about variety — it's about having a controlled environment where your effort is the only variable. That's what makes the data meaningful.
@@ -563,12 +558,8 @@
       <p class="format-desc">Active recovery and heart rate return to baseline</p>
     </div>
   </div>
-
-  <div class="workout-links">
-    <a class="workout-link" href="challenge23-workout.html">See every exercise <span class="arrow">&rarr;</span></a>
-    <a class="workout-link" href="challenge23-science.html">The science behind it <span class="arrow">&rarr;</span></a>
-  </div>
 </section>
+</a>
 
 <!-- ═══════════ 3. THE DATA ═══════════ -->
 <div class="section-divider"></div>
@@ -657,7 +648,7 @@
 
 <!-- ─── FOOTER ─── -->
 <footer>
-  <p>© 2026 Challenge 23</p>
+  <p>© 2026 Challenge 23 · <a href="privacy.html" style="color: var(--text-light); text-decoration: none;">Privacy Policy</a></p>
 </footer>
 
 <script>
@@ -680,5 +671,3 @@
 
 </body>
 </html>
-<!-- deploy -->
-
