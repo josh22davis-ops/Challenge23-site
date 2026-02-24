@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Challenge 23 — Science-Backed. Data-Driven. Socially Motivated.</title>
+<title>Challenge 23 — A 23-Minute Workout That Measures Your Fitness</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -36,14 +36,10 @@
     overflow-x: hidden;
   }
 
-  /* ═══════════ NAV ═══════════ */
+  /* NAV */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
     padding: 16px 40px;
     background: rgba(250,250,248,.85);
     backdrop-filter: blur(20px);
@@ -51,94 +47,58 @@
   }
 
   .logo {
-    font-family: var(--font-head);
-    font-weight: 700;
-    font-size: 18px;
-    letter-spacing: -.3px;
-    color: var(--text);
-    display: flex;
-    align-items: baseline;
-    gap: 4px;
+    font-family: var(--font-head); font-weight: 700; font-size: 18px;
+    letter-spacing: -.3px; color: var(--text);
+    display: flex; align-items: baseline; gap: 4px;
   }
 
-  .logo span {
-    color: var(--accent);
-    font-weight: 700;
-  }
+  .logo span { color: var(--accent); font-weight: 700; }
 
   .nav-cta {
-    font-family: var(--font-head);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--accent);
-    text-decoration: none;
-    padding: 8px 20px;
-    border: 1px solid var(--border-accent);
-    border-radius: 100px;
-    transition: all .3s;
-    cursor: pointer;
+    font-family: var(--font-head); font-size: 13px; font-weight: 500;
+    color: var(--accent); text-decoration: none;
+    padding: 8px 20px; border: 1px solid var(--border-accent);
+    border-radius: 100px; transition: all .3s; cursor: pointer;
   }
 
-  .nav-cta:hover {
-    background: var(--accent-soft);
-  }
+  .nav-cta:hover { background: var(--accent-soft); }
 
-  /* ═══════════ HERO ═══════════ */
+  /* HERO */
   .hero {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 160px 24px 100px;
-    text-align: center;
+    max-width: 720px; margin: 0 auto;
+    padding: 160px 24px 100px; text-align: center;
   }
 
   .hero-label {
-    font-family: var(--font-head);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 28px;
-    opacity: 0;
-    animation: fadeUp .7s ease forwards .15s;
+    font-family: var(--font-head); font-size: 11px; font-weight: 600;
+    letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 28px; opacity: 0; animation: fadeUp .7s ease forwards .15s;
   }
 
   .hero h1 {
-    font-family: var(--font-head);
-    font-size: clamp(34px, 5vw, 52px);
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -.5px;
-    color: var(--text);
-    margin-bottom: 24px;
-    opacity: 0;
-    animation: fadeUp .7s ease forwards .3s;
+    font-family: var(--font-head); font-size: clamp(34px, 5vw, 52px);
+    font-weight: 700; line-height: 1.15; letter-spacing: -.5px;
+    color: var(--text); margin-bottom: 24px;
+    opacity: 0; animation: fadeUp .7s ease forwards .3s;
   }
 
   .hero-intro {
-    font-size: clamp(17px, 1.8vw, 20px);
-    font-weight: 400;
-    color: var(--text-mid);
-    line-height: 1.75;
-    margin-bottom: 44px;
-    opacity: 0;
-    animation: fadeUp .7s ease forwards .45s;
+    font-size: clamp(17px, 1.8vw, 20px); font-weight: 400;
+    color: var(--text-mid); line-height: 1.75; margin-bottom: 44px;
+    opacity: 0; animation: fadeUp .7s ease forwards .45s;
   }
 
-  /* ─── Email form ─── */
+  /* EMAIL FORM */
   .form-wrap {
-    opacity: 0;
-    animation: fadeUp .7s ease forwards .6s;
-    max-width: 460px;
-    margin: 0 auto;
+    opacity: 0; animation: fadeUp .7s ease forwards .6s;
+    max-width: 460px; margin: 0 auto;
   }
+
+  .bottom-cta .form-wrap { opacity: 1; animation: none; }
 
   .email-form {
-    display: flex;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--surface);
+    display: flex; border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--border); background: var(--surface);
     box-shadow: 0 1px 3px rgba(0,0,0,.04);
     transition: border-color .3s, box-shadow .3s;
   }
@@ -148,341 +108,236 @@
     box-shadow: 0 0 0 3px var(--accent-soft), 0 1px 3px rgba(0,0,0,.04);
   }
 
-  .email-form input {
-    flex: 1;
-    padding: 16px 20px;
-    border: none;
-    outline: none;
-    background: transparent;
-    font-family: var(--font-head);
-    font-size: 14px;
-    color: var(--text);
-    min-width: 0;
+  .email-form input[type="email"] {
+    flex: 1; padding: 16px 20px; border: none; outline: none;
+    background: transparent; font-family: var(--font-head);
+    font-size: 14px; color: var(--text); min-width: 0;
   }
 
-  .email-form input::placeholder { color: var(--text-light); }
+  .email-form input[type="email"]::placeholder { color: var(--text-light); }
 
   .email-form button {
-    padding: 16px 28px;
-    background: var(--accent);
-    border: none;
-    color: #fff;
-    font-family: var(--font-head);
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
+    padding: 16px 28px; background: var(--accent); border: none;
+    color: #fff; font-family: var(--font-head); font-size: 14px;
+    font-weight: 600; cursor: pointer; white-space: nowrap;
     transition: background .3s;
   }
 
   .email-form button:hover { background: var(--accent-warm); }
 
   .form-note {
-    font-family: var(--font-head);
-    font-size: 12px;
-    color: var(--text-light);
-    margin-top: 12px;
+    font-family: var(--font-head); font-size: 12px;
+    color: var(--text-light); margin-top: 12px;
   }
 
   .email-form.success { border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,.1); }
-  .email-form.success input,
+  .email-form.success input[type="email"],
   .email-form.success button { display: none; }
   .email-form.error { border-color: #dc2626; box-shadow: 0 0 0 3px rgba(220,38,38,.1); }
   .success-msg, .error-msg {
-    display: none; padding: 16px 20px; width: 100%;
-    text-align: center;
+    display: none; padding: 16px 20px; width: 100%; text-align: center;
     font-family: var(--font-head); font-size: 14px; font-weight: 500;
   }
   .success-msg { color: #16a34a; }
   .error-msg { color: #dc2626; }
   .email-form.success .success-msg { display: block; }
   .email-form.error .error-msg { display: block; }
-  .email-form button:disabled {
-    opacity: .6;
-    cursor: not-allowed;
-  }
+  .email-form button:disabled { opacity: .6; cursor: not-allowed; }
 
-  /* ═══════════ SECTIONS — shared ═══════════ */
-  .section {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .section-divider {
-    width: 48px;
-    height: 1px;
-    background: var(--border);
-    margin: 80px auto;
-  }
+  /* SECTIONS */
+  .section { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  .section-divider { width: 48px; height: 1px; background: var(--border); margin: 80px auto; }
 
   .section-label {
-    font-family: var(--font-head);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--accent);
+    font-family: var(--font-head); font-size: 11px; font-weight: 600;
+    letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent);
     margin-bottom: 20px;
   }
 
   .section h2 {
-    font-family: var(--font-head);
-    font-size: clamp(26px, 3.5vw, 36px);
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -.3px;
-    color: var(--text);
-    margin-bottom: 20px;
+    font-family: var(--font-head); font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 700; line-height: 1.2; letter-spacing: -.3px;
+    color: var(--text); margin-bottom: 20px;
   }
 
-  .section p {
-    font-size: 17px;
-    color: var(--text-mid);
-    line-height: 1.8;
+  .section p { font-size: 17px; color: var(--text-mid); line-height: 1.8; }
+  .section p + p { margin-top: 16px; }
+
+  /* STEPS */
+  .steps { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+
+  .step {
+    display: flex; align-items: flex-start; gap: 20px; padding: 24px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
   }
 
-  .section p + p {
-    margin-top: 16px;
+  .step-num {
+    flex-shrink: 0; width: 36px; height: 36px; border-radius: 10px;
+    background: var(--accent-soft); display: flex; align-items: center;
+    justify-content: center; font-family: var(--font-head);
+    font-size: 15px; font-weight: 700; color: var(--accent);
   }
 
-  /* ═══════════ 1. THE SCIENCE ═══════════ */
-  .science-callout {
-    margin-top: 36px;
-    padding: 32px;
-    background: var(--accent-softer);
-    border-left: 3px solid var(--accent);
+  .step h4 {
+    font-family: var(--font-head); font-size: 15px; font-weight: 600;
+    color: var(--text); margin-bottom: 4px;
+  }
+
+  .step p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+
+  /* CALLOUT */
+  .callout {
+    margin-top: 36px; padding: 32px;
+    background: var(--accent-softer); border-left: 3px solid var(--accent);
     border-radius: 0 12px 12px 0;
   }
 
-  .science-callout p {
-    font-size: 16px;
-    color: var(--text-mid);
-    line-height: 1.75;
-  }
+  .callout p { font-size: 16px; color: var(--text-mid); line-height: 1.75; }
+  .callout strong { color: var(--text); }
 
-  .science-callout strong {
-    color: var(--text);
-  }
-
-  /* ═══════════ 2. THE FORMAT ═══════════ */
+  /* FORMAT BREAKDOWN */
   .format-breakdown {
-    margin-top: 36px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--border);
+    margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border);
   }
 
-  .format-block {
-    background: var(--surface);
-    padding: 28px 24px;
-    text-align: center;
-  }
+  .format-block { background: var(--surface); padding: 28px 24px; text-align: center; }
 
   .format-time {
-    font-family: var(--font-head);
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1;
-    margin-bottom: 4px;
+    font-family: var(--font-head); font-size: 28px; font-weight: 700;
+    color: var(--text); line-height: 1; margin-bottom: 4px;
   }
 
-  .format-time .min {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--accent);
-  }
+  .format-time .min { font-size: 14px; font-weight: 500; color: var(--accent); }
 
   .format-name {
-    font-family: var(--font-head);
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--text-light);
-    margin-bottom: 10px;
+    font-family: var(--font-head); font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--text-light); margin-bottom: 10px;
   }
 
-  .format-desc {
-    font-size: 13px;
-    color: var(--text-light);
-    line-height: 1.5;
+  .format-desc { font-size: 13px; color: var(--text-light); line-height: 1.5; }
+
+  /* DUAL CARD LISTS */
+  .dual-list { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .dual-card {
+    padding: 24px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 12px;
   }
 
-  /* ═══════════ 3. THE DATA ═══════════ */
-  .data-points {
-    margin-top: 36px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  .dual-card h4 {
+    font-family: var(--font-head); font-size: 14px; font-weight: 600;
+    color: var(--text); margin-bottom: 12px;
   }
 
-  .data-point {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 20px 24px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
+  .dual-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+  .dual-card li {
+    font-size: 14px; color: var(--text-light); line-height: 1.5;
+    padding-left: 16px; position: relative;
   }
 
-  .data-icon {
-    flex-shrink: 0;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: var(--accent-soft);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
+  .dual-card li::before {
+    content: ''; position: absolute; left: 0; top: 8px;
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--accent); opacity: .5;
   }
 
-  .data-point h4 {
-    font-family: var(--font-head);
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 4px;
+  /* METRICS */
+  .metrics { margin-top: 36px; display: flex; flex-direction: column; gap: 16px; }
+
+  .metric {
+    display: flex; align-items: flex-start; gap: 16px; padding: 20px 24px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
   }
 
-  .data-point p {
-    font-size: 14px;
-    color: var(--text-light);
-    line-height: 1.6;
+  .metric-icon {
+    flex-shrink: 0; width: 40px; height: 40px; border-radius: 10px;
+    background: var(--accent-soft); display: flex; align-items: center;
+    justify-content: center; font-family: var(--font-head);
+    font-size: 14px; font-weight: 700; color: var(--accent);
   }
 
-  /* ═══════════ 4. THE SOCIAL LAYER ═══════════ */
-  .social-features {
-    margin-top: 36px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+  .metric h4 {
+    font-family: var(--font-head); font-size: 15px; font-weight: 600;
+    color: var(--text); margin-bottom: 4px;
   }
+
+  .metric p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+
+  /* SOCIAL CARDS */
+  .social-features { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
   .social-card {
-    padding: 24px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
+    padding: 24px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 12px;
     transition: border-color .3s;
   }
 
-  .social-card:hover {
-    border-color: var(--border-accent);
-  }
+  .social-card:hover { border-color: var(--border-accent); }
 
   .social-card h4 {
-    font-family: var(--font-head);
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-family: var(--font-head); font-size: 15px; font-weight: 600;
+    color: var(--text); margin-bottom: 8px;
   }
 
-  .social-card p {
-    font-size: 14px;
-    color: var(--text-light);
-    line-height: 1.6;
+  .social-card p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+
+  /* CLICKABLE SECTION */
+  .section-link { text-decoration: none; color: inherit; display: block; }
+
+  .clickable-section {
+    transition: all .3s ease; padding: 32px; margin: -32px; border-radius: 16px;
   }
 
-  /* ═══════════ BOTTOM CTA ═══════════ */
+  .section-link:hover .clickable-section { background: var(--accent-softer); }
+
+  .learn-more {
+    font-size: 16px; color: var(--accent); font-weight: 500;
+    opacity: 0; transition: opacity .3s ease;
+  }
+
+  .section-link:hover .learn-more { opacity: 1; }
+
+  /* BOTTOM CTA */
   .bottom-cta {
-    max-width: 720px;
-    margin: 0 auto;
-    text-align: center;
+    max-width: 720px; margin: 0 auto; text-align: center;
     padding: 80px 24px 100px;
   }
 
   .bottom-cta h2 {
-    font-family: var(--font-head);
-    font-size: clamp(26px, 3.5vw, 36px);
-    font-weight: 700;
-    letter-spacing: -.3px;
-    color: var(--text);
-    margin-bottom: 12px;
+    font-family: var(--font-head); font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 700; letter-spacing: -.3px; color: var(--text); margin-bottom: 12px;
   }
 
   .bottom-cta > p {
-    font-size: 17px;
-    color: var(--text-mid);
-    line-height: 1.7;
-    margin-bottom: 36px;
+    font-size: 17px; color: var(--text-mid); line-height: 1.7; margin-bottom: 36px;
   }
 
-  /* ═══════════ FOOTER ═══════════ */
-  footer {
-    text-align: center;
-    padding: 32px 24px;
-    border-top: 1px solid var(--border);
-  }
+  /* FOOTER */
+  footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); }
+  footer p { font-family: var(--font-head); font-size: 12px; color: var(--text-light); }
 
-  footer p {
-    font-family: var(--font-head);
-    font-size: 12px;
-    color: var(--text-light);
-  }
-
-  /* ═══════════ CLICKABLE SECTION LINK ═══════════ */
-  .section-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-  }
-
-  .clickable-section {
-    transition: all .3s ease;
-    padding: 32px;
-    margin: -32px;
-    border-radius: 16px;
-  }
-
-  .section-link:hover .clickable-section {
-    background: var(--accent-softer);
-  }
-
-  .learn-more {
-    font-size: 16px;
-    color: var(--accent);
-    font-weight: 500;
-    opacity: 0;
-    transition: opacity .3s ease;
-  }
-
-  .section-link:hover .learn-more {
-    opacity: 1;
-  }
-
-  /* ═══════════ ANIMATIONS ═══════════ */
+  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
   .reveal {
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 0; transform: translateY(20px);
     transition: opacity .6s ease, transform .6s ease;
   }
 
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* ═══════════ RESPONSIVE ═══════════ */
+  /* RESPONSIVE */
   @media (max-width: 640px) {
     nav { padding: 14px 20px; }
     .format-breakdown { grid-template-columns: 1fr; }
     .social-features { grid-template-columns: 1fr; }
+    .dual-list { grid-template-columns: 1fr; }
     .email-form { flex-direction: column; }
     .email-form button { padding: 14px; }
   }
@@ -490,20 +345,20 @@
 </head>
 <body>
 
-<!-- ─── NAV ─── -->
+<!-- NAV -->
 <nav>
   <div class="logo">Challenge <span>23</span></div>
   <a class="nav-cta" href="#signup">Join the Waitlist</a>
 </nav>
 
-<!-- ─── HERO ─── -->
+<!-- HERO -->
 <section class="hero">
   <p class="hero-label">Launching Soon on iOS</p>
 
-  <h1>A smarter way to measure fitness — in 23 minutes a week</h1>
+  <h1>A 23-minute workout that measures your fitness every time you do it.</h1>
 
   <p class="hero-intro">
-    Challenge 23 is a structured, science-backed workout paired with real-time heart rate tracking. It shows you proof of improvement before you see it in the mirror — and gives you the social layer to stay in the game.
+    Challenge 23 is a fixed-format workout app with built-in heart rate tracking. Because the workout follows the same structure every session, your heart rate data becomes a running record of your cardiovascular fitness — comparable week over week, impossible to fake.
   </p>
 
   <div class="form-wrap" id="signup">
@@ -518,131 +373,210 @@
   </div>
 </section>
 
-<!-- ═══════════ 1. THE SCIENCE ═══════════ -->
+<!-- 1. HOW IT WORKS -->
 <div class="section-divider"></div>
 
 <section class="section reveal">
-  <p class="section-label">The Foundation</p>
-  <h2>Built on interval training that actually works</h2>
+  <p class="section-label">How It Works</p>
+  <h2>Five steps. No guesswork.</h2>
 
-  <p>
-    High-intensity interval training is one of the most studied and effective forms of cardiovascular exercise. Research consistently shows that short, structured bursts of effort followed by controlled recovery produce measurable gains in VO2 max, heart rate variability, and overall cardiovascular resilience — often in a fraction of the time required by traditional endurance training.
-  </p>
-  <p>
-    Challenge 23 takes this science and wraps it in a fixed, repeatable format. Every session follows the same structure, which means your results are always comparable — week over week, month over month.
-  </p>
-
-  <div class="science-callout">
-    <p>
-      This isn't a trend or a hack. Interval-based cardiovascular training has decades of evidence behind it. What's been missing is a way to <strong>standardize the workout</strong>, <strong>measure effort objectively</strong>, and give people a reason to <strong>keep showing up</strong>. That's what Challenge 23 is designed to do.
-    </p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <h4>Start the workout. The app runs the clock.</h4>
+        <p>Challenge 23 guides you through a structured 23-minute session: a 5-minute warmup, five 3-minute interval blocks, and a final block designed specifically to measure how fast your heart recovers. Every phase has a set duration. You just follow along.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <h4>Your heart rate is tracked the entire time.</h4>
+        <p>Connect a Bluetooth heart rate monitor or use Apple Watch through HealthKit. The app records your heart rate continuously and maps it against each phase of the workout — so it knows exactly when you were pushing, recovering, and holding.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <h4>After each session, you get a score.</h4>
+        <p>Not a calorie estimate. A Training Quality score (0–100) that combines how hard you pushed with how efficiently you recovered. You also get an effort grade (A+ through F), a recovery efficiency score, and data on how your performance changed from block 1 to block 5.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div>
+        <h4>Over time, the data tells a story.</h4>
+        <p>Because every session follows the same format, your scores are directly comparable. Your Training Quality trending up means your cardiovascular fitness is improving — even before you feel it.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div>
+        <h4>Do it with friends.</h4>
+        <p>Create a group, invite people, and see each other's best session every week — ranked. You can also start a workout at the exact same time as someone else, whether you're in the same room or across the world.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════ 2. THE FORMAT ═══════════ -->
+<!-- 2. THE FIXED BLUEPRINT -->
 <div class="section-divider"></div>
 
 <a href="workout.html" class="section-link">
 <section class="section reveal clickable-section">
-  <p class="section-label">The Workout</p>
-  <h2>23 minutes. Same format. Every time. <span class="learn-more">Learn more →</span></h2>
+  <p class="section-label">Why the Structure Is Fixed</p>
+  <h2>Same workout. Same clock. That's the point. <span class="learn-more">Learn more &rarr;</span></h2>
 
   <p>
-    The workout is intentionally simple and repeatable. It's not about variety — it's about having a controlled environment where your effort is the only variable. That's what makes the data meaningful.
+    Most fitness apps change the workout every day. Challenge 23 does the opposite. The timing structure — how long each phase lasts and in what order — is locked. Every session runs the same clock: warmup, work, recover, hold, repeat.
+  </p>
+  <p>
+    This isn't a limitation. It's the mechanism that makes your data meaningful. When the structure is fixed, your heart rate during block 3 this week can be directly compared to block 3 last week. Your recovery speed after the second interval can be tracked over months. The app doesn't have to guess what kind of effort you were doing — it knows, because the workout told it.
   </p>
 
   <div class="format-breakdown">
     <div class="format-block">
-      <div class="format-time">4<span class="min"> min</span></div>
+      <div class="format-time">5<span class="min"> min</span></div>
       <div class="format-name">Warmup</div>
-      <p class="format-desc">Gradual ramp to prepare your cardiovascular system</p>
+      <p class="format-desc">Five 60-second exercises to prepare your cardiovascular system</p>
     </div>
     <div class="format-block">
       <div class="format-time">15<span class="min"> min</span></div>
-      <div class="format-name">Intervals</div>
-      <p class="format-desc">5 blocks of structured work, recovery, and hold phases</p>
+      <div class="format-name">5 Blocks</div>
+      <p class="format-desc">60s high-intensity work, 60s enforced recovery, 60s isometric hold — repeated five times</p>
     </div>
     <div class="format-block">
-      <div class="format-time">4<span class="min"> min</span></div>
-      <div class="format-name">Cooldown</div>
-      <p class="format-desc">Active recovery and heart rate return to baseline</p>
+      <div class="format-time">3<span class="min"> min</span></div>
+      <div class="format-name">Block 6</div>
+      <p class="format-desc">60s work followed by 120s recovery — designed to capture a clinical-grade heart rate recovery measurement</p>
     </div>
+  </div>
+
+  <div class="callout" style="margin-top: 28px;">
+    <p>
+      Blocks 1 and 5 use the <strong>same exercise</strong>. Blocks 2 and 6 use the <strong>same exercise</strong>. This is intentional — comparing your performance on the same movement at the start vs. the end reveals how fatigue affected you. The workout and the measurement are the same thing.
+    </p>
   </div>
 </section>
 </a>
 
-<!-- ═══════════ 3. THE DATA ═══════════ -->
+<!-- 3. YOUR DATA -->
 <div class="section-divider"></div>
 
 <section class="section reveal">
-  <p class="section-label">The Measurement</p>
-  <h2>Your heart rate tells the real story</h2>
+  <p class="section-label">Your Data</p>
+  <h2>Every session produces real metrics — not estimates.</h2>
 
-  <p>
-    Because every session uses the same structure, your heart rate data becomes a reliable record of your cardiovascular fitness over time. You'll see improvements in your data before you feel them — and long before you see them. That feedback loop is what makes the difference.
-  </p>
-
-  <div class="data-points">
-    <div class="data-point">
-      <div class="data-icon">📈</div>
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-icon">TQ</div>
       <div>
-        <h4>Effort Scoring</h4>
-        <p>Each session produces an A–F grade based on how hard you worked relative to your capacity — not arbitrary calorie estimates.</p>
+        <h4>Training Quality (0–100)</h4>
+        <p>Your headline number. It combines how hard you pushed with how well you recovered, averaged into a single score. 85+ is Excellent. 60–84 is Good. Below 60 means something was off — maybe low effort, maybe poor recovery, maybe both.</p>
       </div>
     </div>
-    <div class="data-point">
-      <div class="data-icon">💓</div>
+    <div class="metric">
+      <div class="metric-icon">A+</div>
       <div>
-        <h4>Recovery Tracking</h4>
-        <p>How quickly your heart rate drops after each interval is one of the strongest indicators of cardiovascular health. We track it every session.</p>
+        <h4>Effort Grade (A+ through F)</h4>
+        <p>This isn't just "how high did your heart rate go." The app measures three things: how much your heart rate swung between work and rest, how quickly it climbed during each work phase, and how consistent your effort was across all five blocks. These are weighted and adjusted by your overall intensity to produce a letter grade.</p>
       </div>
     </div>
-    <div class="data-point">
-      <div class="data-icon">📊</div>
+    <div class="metric">
+      <div class="metric-icon">RES</div>
       <div>
-        <h4>Progress Over Time</h4>
-        <p>A standardized workout means a standardized baseline. Week by week, your data builds a clear picture of where you started and how far you've come.</p>
+        <h4>Recovery Efficiency</h4>
+        <p>After each work phase, the app measures how far your heart rate drops in 60 seconds — normalized against your personal range so the score is fair regardless of your age or fitness level. The final block gives you a 120-second recovery window for an even more precise measurement.</p>
+      </div>
+    </div>
+    <div class="metric">
+      <div class="metric-icon">FD</div>
+      <div>
+        <h4>Fatigue Drift</h4>
+        <p>Because blocks 1 and 5 use the same exercise, the app compares your peak heart rate in both. A bigger gap means fatigue hit harder. This is a real signal of muscular vs. cardiovascular endurance that you can track over time.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ 4. THE SOCIAL LAYER ═══════════ -->
+<!-- 4. THE BUILDER -->
 <div class="section-divider"></div>
 
 <section class="section reveal">
-  <p class="section-label">What Keeps You In It</p>
-  <h2>The people around you</h2>
+  <p class="section-label">The Builder</p>
+  <h2>Change the exercises. Keep the structure.</h2>
 
   <p>
-    The science is sound. The data is real. But the reason people stick with it? Other people. Challenge 23 is built with a social layer designed around friendly accountability — a way to stay connected with friends while motivating each other to keep showing up.
+    The workout builder lets you swap in any exercises you want while keeping the 23-minute timing architecture intact. Pick from 30 high-intensity exercises across three difficulty levels for the work phases. Choose from 20 isometric holds for the hold phases. Customize the warmup with 13 options across five slots.
+  </p>
+  <p>
+    When you save a custom workout, it becomes a repeatable model. Every time you run it, the same scoring and comparison logic applies. Your data is just as meaningful — because the structure didn't change.
+  </p>
+
+  <div class="dual-list">
+    <div class="dual-card">
+      <h4>What you can customize</h4>
+      <ul>
+        <li>All 5 warmup exercises</li>
+        <li>4 unique work exercises (blocks 1 &amp; 5 mirror, blocks 2 &amp; 6 mirror)</li>
+        <li>5 isometric hold exercises</li>
+        <li>Save up to 5 custom workouts</li>
+      </ul>
+    </div>
+    <div class="dual-card">
+      <h4>What stays locked</h4>
+      <ul>
+        <li>23-minute total duration</li>
+        <li>Phase timing (60s work, 60s recover, 60s hold)</li>
+        <li>Block 6 clinical recovery (120s)</li>
+        <li>Mirrored blocks for fatigue drift</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 28px;">
+    <p>
+      Share any custom workout with a friend using a <strong>6-character code</strong>. They can preview the full exercise lineup and import it with one tap — then you're both running the same movements and comparing scores directly.
+    </p>
+  </div>
+</section>
+
+<!-- 5. SOCIAL -->
+<div class="section-divider"></div>
+
+<section class="section reveal">
+  <p class="section-label">The Social Layer</p>
+  <h2>See each other's results. Share workouts. Start together.</h2>
+
+  <p>
+    The science is sound. The data is real. But the reason people stick with it? Other people.
   </p>
 
   <div class="social-features">
     <div class="social-card">
-      <h4>👥 Buddy Challenges</h4>
-      <p>Challenge one friend or a group. Everyone sees everyone's effort metrics. It's friendly competition with real data behind it.</p>
+      <h4>Weekly Rankings</h4>
+      <p>Create a group and invite friends. Each week, the app automatically shares your best session — the one with the highest Training Quality score. Everyone sees everyone's results, ranked.</p>
     </div>
     <div class="social-card">
-      <h4>📬 Auto-Post Your Best</h4>
-      <p>Do the workout as many times as you want during the week. The app automatically shares your best session — no daily pressure, just your best effort.</p>
+      <h4>Streaks &amp; Accountability</h4>
+      <p>The app tracks consecutive weeks where each member posted a workout. Miss a week, your streak resets. The group feed shows who's missing — a gentle but effective nudge.</p>
     </div>
     <div class="social-card">
-      <h4>🏆 Weekly Rankings</h4>
-      <p>See where you stand among your buddies. Light trash talk and call-outs are part of the culture. It's how friends push friends.</p>
+      <h4>Share Your Workouts</h4>
+      <p>Built a custom workout you like? Share it with a code. Your friend opens the link, previews the exercises, and imports it. Now you're both running the same movements.</p>
     </div>
     <div class="social-card">
-      <h4>🤝 Low Bar, High Standard</h4>
-      <p>Once a week is all it takes to stay in the game. The bar is low enough that skipping feels embarrassing — but high enough that improvement is real.</p>
+      <h4>Start Together</h4>
+      <p>One person creates a session and gets a code. Others enter it on their phone. When the leader hits Go, every phone starts at the same synced moment — same room or different continents.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ BOTTOM CTA ═══════════ -->
+<!-- BOTTOM CTA -->
 <div class="section-divider"></div>
 
 <section class="bottom-cta">
-  <h2>23 minutes a week. Real data. Real people.</h2>
+  <h2>23 minutes. One score. Every week.</h2>
   <p>
     Challenge 23 is coming to iOS. Join the waitlist to be part of the first group.
   </p>
@@ -661,17 +595,14 @@
 <!-- Hidden iframe for form submission -->
 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
-<!-- ─── FOOTER ─── -->
+<!-- FOOTER -->
 <footer>
-  <p>© 2026 Challenge 23 · <a href="privacy.html" style="color: var(--text-light); text-decoration: none;">Privacy Policy</a></p>
+  <p>&copy; 2026 Challenge 23 &middot; <a href="privacy.html" style="color: var(--text-light); text-decoration: none;">Privacy Policy</a></p>
 </footer>
 
 <script>
   function handleSubmit(form) {
-    // Set the timestamp before the form submits
     form.querySelector('input[name="timestamp"]').value = new Date().toISOString();
-
-    // Show success state after a short delay (form submits to hidden iframe)
     setTimeout(function() {
       form.classList.add('success');
     }, 1000);
