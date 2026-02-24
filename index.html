@@ -285,10 +285,10 @@
   .social-card p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
 
   /* CLICKABLE SECTION */
-  .section-link { text-decoration: none; color: inherit; display: block; }
+  .section-link { text-decoration: none; color: inherit; display: block; max-width: 720px; margin: 0 auto; padding: 0 24px; }
 
   .clickable-section {
-    transition: all .3s ease; padding: 32px; margin: -32px; border-radius: 16px;
+    transition: all .3s ease; padding: 32px; border-radius: 16px;
   }
 
   .section-link:hover .clickable-section { background: var(--accent-softer); }
@@ -423,7 +423,7 @@
 <div class="section-divider"></div>
 
 <a href="workout.html" class="section-link">
-<section class="section reveal clickable-section">
+<section class="reveal clickable-section">
   <p class="section-label">Why the Structure Is Fixed</p>
   <h2>Same workout. Same clock. That's the point. <span class="learn-more">Learn more &rarr;</span></h2>
 
