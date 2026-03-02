@@ -504,6 +504,109 @@
     .hrr-summary { gap: 20px; }
   }
 
+  /* PROGRESS DASHBOARD */
+  .progress-dashboard {
+    max-width: 540px; margin: 0 auto; margin-top: 36px;
+  }
+
+  .progress-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+
+  .progress-card {
+    background: #1a1a1a; border-radius: 16px;
+    padding: 20px; color: #fff; position: relative;
+    overflow: hidden;
+  }
+
+  .progress-card-label {
+    font-family: var(--font-head); font-size: 13px; font-weight: 500;
+    color: rgba(255,255,255,.5); margin-bottom: 8px;
+  }
+
+  .progress-card-value {
+    display: flex; align-items: baseline; gap: 6px;
+  }
+
+  .progress-card-num {
+    font-family: var(--font-head); font-size: 48px; font-weight: 700;
+    color: #fff; line-height: 1;
+  }
+
+  .progress-card-unit {
+    font-family: var(--font-head); font-size: 16px; font-weight: 400;
+    color: rgba(255,255,255,.45);
+  }
+
+  .progress-card-trend {
+    font-family: var(--font-head); font-size: 14px; font-weight: 600;
+    position: absolute; top: 20px; right: 20px;
+  }
+
+  .progress-card-trend.up { color: #22c55e; }
+  .progress-card-trend.down-good { color: #22c55e; }
+  .progress-card-trend.down-bad { color: #f97316; }
+
+  .progress-sparkline {
+    margin-top: 12px; height: 48px; position: relative;
+    overflow: hidden; border-radius: 8px;
+  }
+
+  .progress-sparkline canvas {
+    width: 100%; height: 100%;
+  }
+
+  .progress-records {
+    grid-column: 1 / -1;
+    background: #1a1a1a; border-radius: 16px;
+    padding: 24px; color: #fff;
+  }
+
+  .progress-records-title {
+    font-family: var(--font-head); font-size: 16px; font-weight: 600;
+    color: #fff; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .progress-records-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;
+  }
+
+  .progress-record-item {
+    background: rgba(255,255,255,.05); border-radius: 12px;
+    padding: 16px; text-align: center;
+  }
+
+  .progress-record-label {
+    font-family: var(--font-head); font-size: 11px; font-weight: 500;
+    color: rgba(255,255,255,.45); line-height: 1.3; margin-bottom: 8px;
+  }
+
+  .progress-record-value {
+    font-family: var(--font-head); font-size: 28px; font-weight: 700;
+    color: #f97316; line-height: 1;
+  }
+
+  .progress-record-date {
+    font-family: var(--font-head); font-size: 11px; font-weight: 400;
+    color: rgba(255,255,255,.35); margin-top: 6px;
+  }
+
+  .progress-streak {
+    grid-column: 1 / -1;
+    background: #1a1a1a; border-radius: 16px;
+    padding: 16px 24px; color: #fff;
+    font-family: var(--font-head); font-size: 15px; font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    .progress-card-num { font-size: 36px; }
+    .progress-records-grid { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .progress-record-value { font-size: 22px; }
+    .progress-record-item { padding: 12px 8px; }
+  }
+
   /* BOTTOM CTA */
   .bottom-cta {
     max-width: 720px; margin: 0 auto; text-align: center;
@@ -685,6 +788,86 @@
   <p style="font-family: var(--font-head); font-size: 14px; color: var(--text-mid); line-height: 1.7; max-width: 600px; margin: 28px auto 0; text-align: center;">
     Knowing your heart rate recovery is important — but knowing your trends over time is where the real insight lives. Challenge 23 measures your HRR automatically after every work phase, six times per session, with no manual pulse checks. Over weeks and months, those trends give you a deeper understanding of your fitness journey and a clear picture of whether your cardiovascular health is improving.
   </p>
+
+  <h3 style="font-family: var(--font-head); font-size: 22px; font-weight: 600; color: var(--text-dark); text-align: center; margin: 56px auto 0; max-width: 600px;">Your Progress, Tracked Automatically</h3>
+  <p style="font-family: var(--font-head); font-size: 14px; color: var(--text-mid); text-align: center; margin: 8px auto 0; max-width: 540px; line-height: 1.6;">Every session feeds a bigger picture. Challenge 23 turns your data into trends you can actually see.</p>
+
+  <div class="progress-dashboard reveal">
+    <div class="progress-grid">
+
+      <!-- Resting HR -->
+      <div class="progress-card">
+        <div class="progress-card-label">Resting HR</div>
+        <div class="progress-card-value">
+          <div class="progress-card-num">67</div>
+          <div class="progress-card-unit">BPM</div>
+        </div>
+        <div class="progress-sparkline"><canvas id="spark-rhr"></canvas></div>
+      </div>
+
+      <!-- Recovery -->
+      <div class="progress-card">
+        <div class="progress-card-label">Recovery</div>
+        <div class="progress-card-value">
+          <div class="progress-card-num">86</div>
+          <div class="progress-card-unit">HRR</div>
+        </div>
+        <div class="progress-card-trend up">↑ 26</div>
+        <div class="progress-sparkline"><canvas id="spark-hrr"></canvas></div>
+      </div>
+
+      <!-- Cardio Fitness -->
+      <div class="progress-card">
+        <div class="progress-card-label">Cardio Fitness</div>
+        <div class="progress-card-value">
+          <div class="progress-card-num">40</div>
+          <div class="progress-card-unit">VO2</div>
+        </div>
+        <div class="progress-card-trend down-bad">↓ 1</div>
+        <div class="progress-sparkline"><canvas id="spark-vo2"></canvas></div>
+      </div>
+
+      <!-- Bandwidth -->
+      <div class="progress-card">
+        <div class="progress-card-label">Bandwidth</div>
+        <div class="progress-card-value">
+          <div class="progress-card-num">100</div>
+          <div class="progress-card-unit">bpm</div>
+        </div>
+        <div class="progress-card-trend up">↑ 4</div>
+        <div class="progress-sparkline"><canvas id="spark-bw"></canvas></div>
+      </div>
+
+      <!-- Personal Records -->
+      <div class="progress-records">
+        <div class="progress-records-title">🏆 Personal Records</div>
+        <div class="progress-records-grid">
+          <div class="progress-record-item">
+            <div class="progress-record-label">Best Training Quality</div>
+            <div class="progress-record-value">94</div>
+            <div class="progress-record-date">Feb 21</div>
+          </div>
+          <div class="progress-record-item">
+            <div class="progress-record-label">Best HRR</div>
+            <div class="progress-record-value">95</div>
+            <div class="progress-record-date">Feb 21</div>
+          </div>
+          <div class="progress-record-item">
+            <div class="progress-record-label">Best Effort</div>
+            <div class="progress-record-value">A+</div>
+            <div class="progress-record-date">Feb 7</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Streak -->
+      <div class="progress-streak">
+        🔥 Longest Streak: 6 weeks
+      </div>
+
+    </div>
+  </div>
+
 </section>
 
 <!-- 1. HOW IT WORKS -->
@@ -935,6 +1118,74 @@
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 <script src="chart.js"></script>
+<script>
+(function() {
+  function drawSparkline(id, data, color) {
+    var c = document.getElementById(id);
+    if (!c) return;
+    var ctx = c.getContext('2d');
+    var dpr = window.devicePixelRatio || 1;
+    var w = c.parentElement.offsetWidth;
+    var h = c.parentElement.offsetHeight;
+    c.width = w * dpr; c.height = h * dpr;
+    c.style.width = w + 'px'; c.style.height = h + 'px';
+    ctx.scale(dpr, dpr);
+
+    var min = Math.min.apply(null, data);
+    var max = Math.max.apply(null, data);
+    var range = max - min || 1;
+    var pad = 4;
+
+    // area fill
+    ctx.beginPath();
+    for (var i = 0; i < data.length; i++) {
+      var x = (i / (data.length - 1)) * w;
+      var y = pad + (1 - (data[i] - min) / range) * (h - pad * 2);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath();
+    var grad = ctx.createLinearGradient(0, 0, 0, h);
+    grad.addColorStop(0, color.replace(')', ',.35)').replace('rgb', 'rgba'));
+    grad.addColorStop(1, color.replace(')', ',.03)').replace('rgb', 'rgba'));
+    ctx.fillStyle = grad; ctx.fill();
+
+    // line
+    ctx.beginPath();
+    for (var i = 0; i < data.length; i++) {
+      var x = (i / (data.length - 1)) * w;
+      var y = pad + (1 - (data[i] - min) / range) * (h - pad * 2);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.stroke();
+
+    // dot on last point
+    var lx = w;
+    var ly = pad + (1 - (data[data.length - 1] - min) / range) * (h - pad * 2);
+    ctx.beginPath(); ctx.arc(lx, ly, 4, 0, Math.PI * 2);
+    ctx.fillStyle = color; ctx.fill();
+  }
+
+  // Resting HR — slight downward trend (good)
+  drawSparkline('spark-rhr',
+    [72, 71, 70, 72, 69, 70, 68, 71, 69, 68, 70, 67, 69, 68, 67],
+    'rgb(34,197,94)');
+
+  // Recovery HRR — upward trend
+  drawSparkline('spark-hrr',
+    [58, 62, 60, 65, 63, 68, 70, 72, 75, 78, 80, 82, 84, 85, 86],
+    'rgb(34,197,94)');
+
+  // Cardio Fitness VO2 — mostly stable with slight dip
+  drawSparkline('spark-vo2',
+    [38, 39, 39, 40, 41, 41, 40, 41, 40, 40, 41, 40, 40, 41, 40],
+    'rgb(249,115,22)');
+
+  // Bandwidth — upward trend
+  drawSparkline('spark-bw',
+    [82, 84, 86, 85, 88, 90, 89, 92, 93, 94, 95, 96, 98, 99, 100],
+    'rgb(34,197,94)');
+})();
+</script>
 
 </body>
 </html>
