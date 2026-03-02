@@ -396,6 +396,114 @@
 
   .section-link:hover .learn-more { opacity: 1; }
 
+  /* HRR DETAIL SECTION */
+  .hrr-panel {
+    max-width: 480px; margin: 0 auto; margin-top: 36px;
+    background: #1a1a1a; border-radius: 16px;
+    padding: 32px 28px; color: #fff;
+  }
+
+  .hrr-headline {
+    text-align: center; margin-bottom: 24px;
+  }
+
+  .hrr-headline .hrr-big-num {
+    font-family: var(--font-head); font-size: 64px; font-weight: 700;
+    color: #22c55e; line-height: 1; display: inline-flex; align-items: baseline; gap: 8px;
+  }
+
+  .hrr-headline .hrr-big-num .hrr-arrow {
+    font-size: 36px; color: #22c55e;
+  }
+
+  .hrr-headline .hrr-big-unit {
+    font-family: var(--font-head); font-size: 20px; font-weight: 400;
+    color: rgba(255,255,255,.5); margin-left: 4px;
+  }
+
+  .hrr-headline .hrr-title {
+    font-family: var(--font-head); font-size: 13px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,.45); margin-top: 8px;
+  }
+
+  .hrr-summary {
+    display: flex; justify-content: center; gap: 32px;
+    margin-bottom: 20px; padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+
+  .hrr-stat { text-align: center; }
+
+  .hrr-stat-value {
+    font-family: var(--font-head); font-size: 32px; font-weight: 700; line-height: 1;
+  }
+
+  .hrr-stat-value.green { color: #22c55e; }
+  .hrr-stat-value.yellow { color: #eab308; }
+  .hrr-stat-value.blue { color: #3b82f6; }
+
+  .hrr-stat-label {
+    font-family: var(--font-head); font-size: 11px; font-weight: 500;
+    color: rgba(255,255,255,.4); margin-top: 4px; text-transform: capitalize;
+  }
+
+  .hrr-basis {
+    text-align: center; font-family: var(--font-head); font-size: 13px;
+    color: rgba(255,255,255,.45); margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+
+  .hrr-basis .hrr-check { color: #22c55e; }
+
+  .hrr-blocks-title {
+    font-family: var(--font-head); font-size: 11px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,.4); margin-bottom: 16px;
+  }
+
+  .hrr-block-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+
+  .hrr-block-row:last-child { border-bottom: none; }
+
+  .hrr-block-exercise {
+    font-family: var(--font-head); font-size: 14px; font-weight: 600;
+    color: rgba(255,255,255,.85); min-width: 140px;
+  }
+
+  .hrr-block-detail {
+    flex: 1; margin-left: 16px;
+  }
+
+  .hrr-block-drop {
+    font-family: var(--font-head); font-size: 13px; font-weight: 600;
+    color: #22c55e;
+  }
+
+  .hrr-block-range {
+    font-family: var(--font-head); font-size: 11px; font-weight: 400;
+    color: rgba(255,255,255,.35); margin-top: 2px;
+  }
+
+  .hrr-block-score {
+    font-family: var(--font-head); font-size: 24px; font-weight: 700;
+    min-width: 40px; text-align: right;
+  }
+
+  .hrr-block-score.green { color: #22c55e; }
+  .hrr-block-score.yellow { color: #eab308; }
+  .hrr-block-score.blue { color: #3b82f6; }
+
+  @media (max-width: 640px) {
+    .hrr-panel { padding: 24px 20px; }
+    .hrr-headline .hrr-big-num { font-size: 52px; }
+    .hrr-block-exercise { min-width: 100px; font-size: 13px; }
+    .hrr-summary { gap: 20px; }
+  }
+
   /* BOTTOM CTA */
   .bottom-cta {
     max-width: 720px; margin: 0 auto; text-align: center;
@@ -490,6 +598,90 @@
     <div class="chart-legend-item"><div class="chart-legend-dot" style="background: rgba(170,150,30,0.7);"></div>Hold</div>
   </div>
   <p class="chart-hint">Drag to explore · Hover for details</p>
+
+  <div class="hrr-panel reveal">
+    <div class="hrr-headline">
+      <div class="hrr-big-num"><span class="hrr-arrow">↓</span>26<span class="hrr-big-unit">bpm</span></div>
+      <div class="hrr-title">Heart Rate Recovery</div>
+    </div>
+
+    <div class="hrr-summary">
+      <div class="hrr-stat">
+        <div class="hrr-stat-value green">23</div>
+        <div class="hrr-stat-label">Normalized</div>
+      </div>
+      <div class="hrr-stat">
+        <div class="hrr-stat-value yellow">B</div>
+        <div class="hrr-stat-label">Grade</div>
+      </div>
+      <div class="hrr-stat">
+        <div class="hrr-stat-value blue">86</div>
+        <div class="hrr-stat-label">Score</div>
+      </div>
+    </div>
+
+    <div class="hrr-basis"><span class="hrr-check">✓</span> Based on 6 recovery intervals</div>
+
+    <div class="hrr-blocks-title">Recovery by Block</div>
+
+    <div class="hrr-block-row">
+      <div class="hrr-block-exercise">Pushups</div>
+      <div class="hrr-block-detail">
+        <div class="hrr-block-drop">23 bpm drop</div>
+        <div class="hrr-block-range">Peak 168 → 133 at 60s</div>
+      </div>
+      <div class="hrr-block-score green">23</div>
+    </div>
+
+    <div class="hrr-block-row">
+      <div class="hrr-block-exercise">Fast Tempo Squats</div>
+      <div class="hrr-block-detail">
+        <div class="hrr-block-drop">26 bpm drop</div>
+        <div class="hrr-block-range">Peak 168 → 143 at 60s</div>
+      </div>
+      <div class="hrr-block-score green">26</div>
+    </div>
+
+    <div class="hrr-block-row">
+      <div class="hrr-block-exercise">Mountain Climbers</div>
+      <div class="hrr-block-detail">
+        <div class="hrr-block-drop">23 bpm drop</div>
+        <div class="hrr-block-range">Peak 174 → 151 at 60s</div>
+      </div>
+      <div class="hrr-block-score green">23</div>
+    </div>
+
+    <div class="hrr-block-row">
+      <div class="hrr-block-exercise">Reverse Lunges</div>
+      <div class="hrr-block-detail">
+        <div class="hrr-block-drop">16 bpm drop</div>
+        <div class="hrr-block-range">Peak 161 → 149 at 60s</div>
+      </div>
+      <div class="hrr-block-score yellow">16</div>
+    </div>
+
+    <div class="hrr-block-row">
+      <div class="hrr-block-exercise">Pushups</div>
+      <div class="hrr-block-detail">
+        <div class="hrr-block-drop">30 bpm drop</div>
+        <div class="hrr-block-range">Peak 167 → 138 at 60s</div>
+      </div>
+      <div class="hrr-block-score blue">30</div>
+    </div>
+
+    <div class="hrr-block-row">
+      <div class="hrr-block-exercise">Fast Tempo Squats</div>
+      <div class="hrr-block-detail">
+        <div class="hrr-block-drop">22 bpm drop</div>
+        <div class="hrr-block-range">Peak 172 → 152 at 60s</div>
+      </div>
+      <div class="hrr-block-score green">22</div>
+    </div>
+  </div>
+
+  <p style="font-family: var(--font-head); font-size: 14px; color: var(--text-mid); line-height: 1.7; max-width: 600px; margin: 28px auto 0; text-align: center;">
+    Knowing your heart rate recovery is important — but knowing your trends over time is where the real insight lives. Challenge 23 measures your HRR automatically after every work phase, six times per session, with no manual pulse checks. Over weeks and months, those trends give you a deeper understanding of your fitness journey and a clear picture of whether your cardiovascular health is improving.
+  </p>
 </section>
 
 <!-- 1. HOW IT WORKS -->
