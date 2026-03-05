@@ -55,11 +55,11 @@
   .phase-bar::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
   }
-  .phase-bar.warmup { flex: 0 0 17.4%; background: #1C1C1E; }
+  .phase-bar.warmup { flex: 0 0 21.7%; background: #1C1C1E; }
   .phase-bar.warmup::before { background: #F0A830; }
   .phase-bar.engine { flex: 1; background: #1C1C1E; }
   .phase-bar.engine::before { background: linear-gradient(90deg, #FF6B6B, #34C759, #CC8800); }
-  .phase-bar.cooldown { flex: 0 0 17.4%; background: #1C1C1E; }
+  .phase-bar.cooldown { flex: 0 0 13%; background: #1C1C1E; }
   .phase-bar.cooldown::before { background: #5AC8FA; }
   .phase-name { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
   .phase-bar.warmup .phase-name { color: #F0A830; }
@@ -221,16 +221,16 @@
     <div class="section-label">The Structure</div>
     <div class="phases">
       <div class="phase-bar warmup">
-        <div><div class="phase-name">Warm-Up</div><div class="phase-time">0:00 – 4:00</div></div>
-        <div class="phase-dur">4:00</div>
+        <div><div class="phase-name">Warm-Up</div><div class="phase-time">0:00 – 5:00</div></div>
+        <div class="phase-dur">5:00</div>
       </div>
       <div class="phase-bar engine">
-        <div><div class="phase-name">Interval Engine &times;5</div><div class="phase-time">4:00 – 19:00</div></div>
+        <div><div class="phase-name">Interval Engine &times;5</div><div class="phase-time">5:00 – 20:00</div></div>
         <div class="phase-dur">15:00</div>
       </div>
       <div class="phase-bar cooldown">
-        <div><div class="phase-name">Cooldown</div><div class="phase-time">19:00 – 23:00</div></div>
-        <div class="phase-dur">4:00</div>
+        <div><div class="phase-name">Cooldown</div><div class="phase-time">20:00 – 23:00</div></div>
+        <div class="phase-dur">3:00</div>
       </div>
     </div>
   </div>
@@ -262,7 +262,7 @@
         </div>
       </div>
       <div class="cycle-multiplier">&times;5</div>
-      <div class="cycle-sub">Five rounds. Fifteen minutes. One signature.</div>
+      <div class="cycle-sub">Five rounds + cooldown. Twenty-three minutes. One signature.</div>
     </div>
   </div>
 
@@ -276,7 +276,7 @@
         <div class="sci-title">Metabolic + Cardiovascular Load</div>
         <div class="sci-body">60-second high-effort intervals reliably push HR to <strong>85–95% HRmax</strong> in non-elite populations. Short intervals excel at cardiac output stress without requiring pacing skill.</div>
         <div class="sci-stat work">
-          <div class="sci-stat-num">5</div>
+          <div class="sci-stat-num">6</div>
           <div class="sci-stat-label">HR accelerations per session</div>
         </div>
       </div>
@@ -286,7 +286,7 @@
         <div class="sci-title">Autonomic Down-Regulation</div>
         <div class="sci-body">Heart rate recovery in the first 60 seconds post-effort is a <strong>strong predictor of cardiovascular health</strong> and mortality risk. Enforced rest creates comparable, measurable HRR curves.</div>
         <div class="sci-stat recover">
-          <div class="sci-stat-num">5</div>
+          <div class="sci-stat-num">6</div>
           <div class="sci-stat-label">clean recovery signals captured</div>
         </div>
       </div>
@@ -304,9 +304,9 @@
       <div class="sci-card">
         <div class="sci-tag combo">Combined</div>
         <div class="sci-title">Sympathetic–Parasympathetic Switching</div>
-        <div class="sci-body">Five complete cycles of acceleration, recovery, and pressure create <strong>repeated autonomic nervous system switching</strong> — a training stimulus rarely seen in standard HIIT protocols.</div>
+        <div class="sci-body">Five interval cycles plus a cooldown block create <strong>repeated autonomic nervous system switching</strong> — six rounds of acceleration and recovery, a training stimulus rarely seen in standard HIIT protocols.</div>
         <div class="sci-stat combo">
-          <div class="sci-stat-num">15</div>
+          <div class="sci-stat-num">17</div>
           <div class="sci-stat-label">distinct physiological stressors in one session</div>
         </div>
       </div>
@@ -384,25 +384,36 @@
         <span class="bar-total">23:00</span>
       </div>
       <div class="bar">
-        <div class="seg warmup" style="width:8.7%" title="Warm-Up (2:00)"></div>
-        <div class="seg warmup" style="width:8.7%" title="Warm-Up (2:00)"></div>
+        <!-- Warmup: 5 × 1:00 -->
+        <div class="seg warmup" style="width:4.35%" title="Warm-Up (1:00)"></div>
+        <div class="seg warmup" style="width:4.35%" title="Warm-Up (1:00)"></div>
+        <div class="seg warmup" style="width:4.35%" title="Warm-Up (1:00)"></div>
+        <div class="seg warmup" style="width:4.35%" title="Warm-Up (1:00)"></div>
+        <div class="seg warmup" style="width:4.35%" title="Warm-Up (1:00)"></div>
+        <!-- Block 1 -->
         <div class="seg work" style="width:4.35%" title="Work (1:00)"></div>
         <div class="seg recover" style="width:4.35%" title="Recover (1:00)"></div>
         <div class="seg hold" style="width:4.35%" title="Hold (1:00)"></div>
+        <!-- Block 2 -->
         <div class="seg work" style="width:4.35%" title="Work (1:00)"></div>
         <div class="seg recover" style="width:4.35%" title="Recover (1:00)"></div>
         <div class="seg hold" style="width:4.35%" title="Hold (1:00)"></div>
+        <!-- Block 3 -->
         <div class="seg work" style="width:4.35%" title="Work (1:00)"></div>
         <div class="seg recover" style="width:4.35%" title="Recover (1:00)"></div>
         <div class="seg hold" style="width:4.35%" title="Hold (1:00)"></div>
+        <!-- Block 4 -->
         <div class="seg work" style="width:4.35%" title="Work (1:00)"></div>
         <div class="seg recover" style="width:4.35%" title="Recover (1:00)"></div>
         <div class="seg hold" style="width:4.35%" title="Hold (1:00)"></div>
+        <!-- Block 5 -->
         <div class="seg work" style="width:4.35%" title="Work (1:00)"></div>
         <div class="seg recover" style="width:4.35%" title="Recover (1:00)"></div>
         <div class="seg hold" style="width:4.35%" title="Hold (1:00)"></div>
-        <div class="seg cooldown" style="width:8.7%" title="Cooldown (2:00)"></div>
-        <div class="seg cooldown" style="width:8.7%" title="Cooldown (2:00)"></div>
+        <!-- Cooldown: 1:00 work + 2:00 recovery -->
+        <div class="seg work" style="width:4.35%" title="Cooldown Work (1:00)"></div>
+        <div class="seg cooldown" style="width:4.35%" title="Cooldown Recovery (1:00)"></div>
+        <div class="seg cooldown" style="width:4.35%" title="Cooldown Recovery (1:00)"></div>
       </div>
     </div>
   </div>
