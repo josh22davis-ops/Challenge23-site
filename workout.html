@@ -59,11 +59,14 @@
   .phase-bar.warmup::before { background: #F0A830; }
   .phase-bar.engine { flex: 1; background: #1C1C1E; }
   .phase-bar.engine::before { background: linear-gradient(90deg, #FF6B6B, #34C759, #CC8800); }
-  .phase-bar.cooldown { flex: 0 0 13%; background: #1C1C1E; }
+  .phase-bar.final-work { flex: 0 0 4.35%; background: #1C1C1E; }
+  .phase-bar.final-work::before { background: #FF6B6B; }
+  .phase-bar.cooldown { flex: 0 0 8.7%; background: #1C1C1E; }
   .phase-bar.cooldown::before { background: #5AC8FA; }
   .phase-name { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
   .phase-bar.warmup .phase-name { color: #F0A830; }
   .phase-bar.engine .phase-name { color: #fff; }
+  .phase-bar.final-work .phase-name { color: #FF6B6B; }
   .phase-bar.cooldown .phase-name { color: #5AC8FA; }
   .phase-time { font-size: 13px; color: #8E8E93; margin-top: 4px; }
   .phase-dur { font-size: 22px; font-weight: 800; margin-top: auto; font-variant-numeric: tabular-nums; }
@@ -228,9 +231,13 @@
         <div><div class="phase-name">Interval Engine &times;5</div><div class="phase-time">5:00 – 20:00</div></div>
         <div class="phase-dur">15:00</div>
       </div>
+      <div class="phase-bar final-work">
+        <div><div class="phase-name">Final Work</div><div class="phase-time">20:00 – 21:00</div></div>
+        <div class="phase-dur">1:00</div>
+      </div>
       <div class="phase-bar cooldown">
-        <div><div class="phase-name">Final Work + Cooldown</div><div class="phase-time">20:00 – 23:00</div></div>
-        <div class="phase-dur">3:00</div>
+        <div><div class="phase-name">Cooldown</div><div class="phase-time">21:00 – 23:00</div></div>
+        <div class="phase-dur">2:00</div>
       </div>
     </div>
   </div>
