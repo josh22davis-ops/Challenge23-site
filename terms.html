@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — Challenge 23</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1f;
+    --text-mid: #4a4a52;
+    --text-light: #8a8a92;
+    --accent: #e04a1a;
+    --accent-warm: #c73e12;
+    --border: rgba(0,0,0,.06);
+    --border-accent: rgba(224,74,26,.15);
+    --font-head: 'Sora', sans-serif;
+    --font-body: 'Source Serif 4', Georgia, serif;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    background: rgba(250,250,248,.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -.3px;
+    color: var(--text);
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    text-decoration: none;
+  }
+
+  .logo span {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .nav-cta {
+    font-family: var(--font-head);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 8px 20px;
+    border: 1px solid var(--border-accent);
+    border-radius: 100px;
+    transition: all .3s;
+  }
+
+  .nav-cta:hover {
+    background: rgba(224,74,26,.08);
+  }
+
+  .content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 140px 24px 80px;
+  }
+
+  .page-label {
+    font-family: var(--font-head);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: var(--font-head);
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -.3px;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .last-updated {
+    font-family: var(--font-head);
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 48px;
+  }
+
+  h2 {
+    font-family: var(--font-head);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 40px;
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  ul {
+    margin: 0 0 16px 24px;
+    color: var(--text-mid);
+  }
+
+  li {
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 8px;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--border-accent);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+
+  .callout p { margin-bottom: 0; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  footer p {
+    font-family: var(--font-head);
+    font-size: 12px;
+    color: var(--text-light);
+  }
+
+  footer a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin: 0 12px;
+  }
+
+  footer a:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 14px 20px; }
+    .content { padding: 120px 20px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Challenge <span>23</span></a>
+  <a class="nav-cta" href="index.html#signup">Join the Waitlist</a>
+</nav>
+
+<div class="content">
+  <p class="page-label">Legal</p>
+  <h1>Terms of Service</h1>
+  <p class="last-updated">Last updated: July 2, 2026</p>
+
+  <h2>1. Agreement</h2>
+  <p>These Terms of Service ("Terms") are an agreement between you and Challenge 23 ("we," "us," or "our") governing your use of the Challenge 23 app and website (together, the "Service"). By creating an account or using the Service, you agree to these Terms and to our <a href="privacy.html">Privacy Policy</a>. If you do not agree, do not use the Service.</p>
+
+  <h2>2. What Challenge 23 Is — and Isn't</h2>
+  <p>Challenge 23 is a fitness measurement tool. It guides a fixed 23-minute bodyweight workout and measures how your heart rate responds, using data from sensors you connect. It is <strong>not a medical device</strong>, does not provide medical advice, and does not diagnose, treat, monitor, or prevent any disease or condition. Metrics shown in the app (including Heart Rate Recovery, Push Efficiency, and session grades) are fitness estimates for informational purposes only, and depend on the accuracy of your third-party sensor hardware, which we do not control.</p>
+
+  <h2>3. Health Warning and Assumption of Risk</h2>
+  <div class="callout">
+    <p><strong>Exercise involves inherent risk of injury, including serious cardiovascular events.</strong> Consult your physician before beginning this or any exercise program — especially if you have a heart condition, high blood pressure, chest pain, dizziness, joint or bone problems, are pregnant, or have any other condition that could be affected by physical activity. Stop exercising immediately and seek medical attention if you experience chest pain, pressure, severe shortness of breath, light-headedness, or unusual discomfort.</p>
+  </div>
+  <p>By using the Service, you represent that you are physically able to participate in high-intensity interval exercise, and you knowingly and voluntarily <strong>assume all risks</strong> associated with performing the workouts, whether or not a workout is published by us or by a third-party creator. You are solely responsible for exercising within your limits, using safe form, and choosing a safe environment.</p>
+
+  <h2>4. Waiver and Release</h2>
+  <p>To the maximum extent permitted by applicable law, you release and hold harmless Challenge 23 and its owners, officers, employees, and agents from any and all claims, liabilities, damages, and causes of action arising out of or related to any injury, health condition, or loss you may suffer in connection with performing workouts or otherwise using the Service. Nothing in this section limits liability that cannot be limited under applicable law.</p>
+
+  <h2>5. Eligibility and Accounts</h2>
+  <p>You must be at least 18 years old to create an account, or at least 13 with the consent and supervision of a parent or legal guardian who agrees to these Terms on your behalf. Accounts are created with Sign in with Apple. You are responsible for activity on your account. You may delete your account and associated data at any time in the app (Settings &rarr; Profile &rarr; Delete Account).</p>
+
+  <h2>6. Groups and Challenges</h2>
+  <p>If you join a group or challenge, your display name and shared workout scores are visible to other members of that group. You agree not to impersonate others, harass other members, or use groups for any unlawful purpose. We may remove content or restrict accounts that violate these Terms.</p>
+
+  <h2>7. Purchases</h2>
+  <p>If we offer paid features or subscriptions, they will be billed through the Apple App Store under Apple's payment terms. Prices and features will be shown before you buy. Except where required by law or by Apple's refund policies, purchases are non-refundable.</p>
+
+  <h2>8. Your Data and Our Content</h2>
+  <p>Your workout data belongs to you. You grant us a limited license to store and process it solely to operate the Service, as described in our <a href="privacy.html">Privacy Policy</a>. The Service itself — including the app, workout formats, scoring methods, brand, and content — is owned by us or our licensors and is protected by intellectual property law, including pending patent rights. You may not copy, modify, reverse engineer, or create derivative works from the Service except as permitted by law.</p>
+
+  <h2>9. Disclaimer of Warranties</h2>
+  <p>The Service is provided "as is" and "as available," without warranties of any kind, express or implied, including fitness for a particular purpose, accuracy, and non-infringement. We do not warrant that the Service will be uninterrupted, error-free, or that metrics will be accurate for your circumstances.</p>
+
+  <h2>10. Limitation of Liability</h2>
+  <p>To the maximum extent permitted by law, our total liability for any claims arising out of or relating to the Service will not exceed the greater of (a) the amounts you paid us in the twelve months before the claim arose, or (b) fifty US dollars ($50). We will not be liable for indirect, incidental, special, consequential, or punitive damages, including personal injury to the extent such limitation is permitted by applicable law.</p>
+
+  <h2>11. Changes and Termination</h2>
+  <p>We may update the Service and these Terms over time. If we make material changes, we will notify you in the app; continued use after changes take effect constitutes acceptance. We may suspend or terminate accounts that violate these Terms. You may stop using the Service at any time.</p>
+
+  <h2>12. Governing Law and Disputes</h2>
+  <p>These Terms are governed by the laws of the State of Nebraska, without regard to conflict-of-law rules. Any dispute arising out of these Terms or the Service will be resolved in the state or federal courts located in Nebraska, and you consent to their jurisdiction. Before filing any claim, you agree to contact us and attempt in good faith to resolve the dispute informally for at least 30 days.</p>
+
+  <h2>13. Contact</h2>
+  <p>Questions about these Terms: <a href="mailto:support@challenge23.com">support@challenge23.com</a></p>
+</div>
+
+<footer>
+  <p>© 2026 Challenge 23 · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
+</footer>
+
+</body>
+</html>
