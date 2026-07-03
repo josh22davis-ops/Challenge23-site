@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Founder's Log | Challenge 23 Blog</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+      line-height: 1.75;
+      color: #1a1a1a;
+      background: #fafafa;
+    }
+    .blog-header {
+      background: linear-gradient(135deg, #0f172a, #1e3a5f);
+      color: white;
+      padding: 60px 20px 50px;
+      text-align: center;
+    }
+    .blog-header .back-link {
+      display: inline-block;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+      transition: color 0.2s;
+    }
+    .blog-header .back-link:hover { color: rgba(255,255,255,0.9); }
+    .blog-header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .blog-header .subtitle {
+      font-size: 1.05rem;
+      opacity: 0.7;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .posts {
+      max-width: 680px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
+    }
+    .post-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+      padding: 36px 36px;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .post-card:hover {
+      box-shadow: 0 6px 28px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+    .post-card .post-tag {
+      display: inline-block;
+      background: #f0f7ff;
+      color: #3b82f6;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .post-card h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .post-card .post-excerpt {
+      font-size: 0.95rem;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .post-card .post-meta {
+      font-size: 0.82rem;
+      color: #9ca3af;
+    }
+    @media (max-width: 720px) {
+      .blog-header h1 { font-size: 1.8rem; }
+      .post-card { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+<div class="blog-header">
+  <a class="back-link" href="../index.html">&larr; Challenge 23</a>
+  <h1>Founder's Log</h1>
+  <p class="subtitle">Building Challenge 23 in public. The wins, the fails, and everything in between.</p>
+</div>
+<div class="posts">
+  <a class="post-card" href="apple-watch-vs-polar-h9.html">
+    <div class="post-tag">Hardware</div>
+    <h2>Apple Watch vs. Polar H9: My First (Failed) Comparison Test</h2>
+    <p class="post-excerpt">I set up a side-by-side heart rate accuracy test between the Apple Watch and the Polar H9 chest strap. The H9 disconnected after one interval. Here's what I learned — and why I'm testing again.</p>
+    <div class="post-meta">March 15, 2026 &middot; Josh Davis</div>
+  </a>
+</div>
+</body>
+</html>
